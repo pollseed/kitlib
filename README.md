@@ -1,4 +1,5 @@
 # kitlib
+[![Build Status](https://travis-ci.org/pollseed/kitlib.svg?branch=master)](https://travis-ci.org/pollseed/kitlib)
 ##Environment
 * java 1.7
 * gradle 2.1
