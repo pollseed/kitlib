@@ -1,0 +1,22 @@
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "project-report"
+
+def defaultEncoding = 'UTF-8'
+[compileJava, compileTestJava]*.options*.encoding = defaultEncoding
+processResources.destinationDir = compileJava.destinationDir
+
+def aptGeneratePath = 'build/apt_generated'
+compileJava.options.compilerArgs = ['-s', aptGeneratePath]
+new File(aptGeneratePath).mkdirs()
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {url 'http://maven.seasar.org/maven2'}
+}
+
+dependencies {
+    testCompile 'junit:junit:3.8.2'
+    testCompile 'org.apache.commons:commons-lang3:3.3.2'
+}
