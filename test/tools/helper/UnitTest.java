@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
+import org.apache.commons.io.IOUtils;
+
 import tools.RegexCheck.RegexFormat;
 
 public class UnitTest {
@@ -62,10 +64,8 @@ public class UnitTest {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            try {
-                in.close();
-                out.close();
-            } catch (IOException e) {}
+            IOUtils.closeQuietly(in);
+            IOUtils.closeQuietly(out);
             file.delete();
         }
         System.out.println(String.format(FORMAT_LOGGER, FileReader.class, "end"));
