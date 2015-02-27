@@ -19,4 +19,5 @@ repositories {
 dependencies {
     testCompile 'junit:junit:3.8.2'
     testCompile 'org.apache.commons:commons-lang3:3.3.2'
+    testCompile 'commons-io:commons-io:2.4'
 }
