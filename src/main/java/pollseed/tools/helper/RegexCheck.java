@@ -27,7 +27,7 @@ public class RegexCheck {
      * UN-SAFE
      * 
      * @param type
-     *            {@link Type}
+     *            {@link RegexType}
      * @param target
      *            Character you want to evaluate
      * @return true or false
@@ -57,31 +57,61 @@ public class RegexCheck {
             throw new NullPointerException("type is nullptr.");
     }
 
+    /**
+     * Regex-Check-Class Format Type
+     */
     public static class RegexFormat {
+        /**
+         * Regex-Check-Class Format Type
+         */
         public enum RegexType {
-            // numbers
+            /**
+             * numbers
+             */
             NUM(1, "^[0-9]+$"),
-            // Lower case
+            /**
+             * Lower case
+             */
             LOWERCASE(2, "^[a-z]+$"),
-            // Upper case
+            /**
+             * Upper case
+             */
             UPPERCASE(3, "^[A-Z]+$"),
-            // Alphanumeric characters
+            /**
+             * Alphanumeric characters
+             */
             ALPHANUMERIC(4, "^[0-9a-zA-Z]+$"),
-            // Em numbers
+            /**
+             * Em numbers
+             */
             EM_NUM(11, "^[０-９]+$"),
-            // Em lowercase
+            /**
+             * Em lowercase
+             */
             EM_LOWERCASE(12, "^[ａ-ｚ]+$"),
-            // Em uppercase
+            /**
+             * Em uppercase
+             */
             EM_UPPERCASE(13, "^[Ａ-Ｚ]+$"),
-            // Em Alphanumeric characters
+            /**
+             * Em Alphanumeric characters
+             */
             EM_ALPHANUMERIC(14, "^[０-９ａ-ｚＡ-Ｚ]+$"),
-            // Kanji
+            /**
+             * Kanji
+             */
             KANJI(21, "^[一-龥豈-鶴]+$"),
-            // Hiragana
+            /**
+             * Hiragana
+             */
             HIRAGANA(22, "^[ぁ-ん]+$"),
-            // Katakana
+            /**
+             * Katakana
+             */
             KATAKANA(23, "^[ァ-ヶ]+$"),
-            // Japanese Languages
+            /**
+             * Japanese Languages
+             */
             JAPANESE(24, "^[一-龥豈-鶴ぁ-んァ-ヶ]+$")
 
             ;

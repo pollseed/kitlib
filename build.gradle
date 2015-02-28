@@ -3,9 +3,16 @@ apply plugin: "eclipse"
 apply plugin: "project-report"
 apply plugin: "application"
 
+def jdkVersion = 1.7
 def defaultEncoding = 'UTF-8'
 [compileJava, compileTestJava]*.options*.encoding = defaultEncoding
 processResources.destinationDir = compileJava.destinationDir
+
+javadoc {
+    options.encoding(defaultEncoding)
+    options.setEncoding(defaultEncoding)
+    title = 'v0.01'
+}
 
 def aptGeneratePath = 'build/apt_generated'
 compileJava.options.compilerArgs = ['-s', aptGeneratePath]
