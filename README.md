@@ -7,8 +7,8 @@
 [![Coverage Status](https://coveralls.io/repos/pollseed/kitlib/badge.svg)](https://coveralls.io/r/pollseed/kitlib)
 
 ##Environment
-* java 1.7
-* gradle 2.1
+* java 1.7.0_72
+* gradle 2.2.1
 
 ##Summary
 Java Auxiliary Library
@@ -53,25 +53,19 @@ $ gradle test
     │   │   └── pollseed
     │   │       └── tools
     │   │           ├── helper
-    │   │           │   ├── FileParser.java
-    │   │           │   └── abst
-    │   │           │       └── AbstractFileParser.java
     │   │           └── util
-    │   │               └── RegexCheck.java
     │   └── resources
     └── test
         ├── java
         │   └── pollseed
         │       └── tools
         │           ├── helper
-        │           │   └── FileParserTest.java
         │           └── util
-        │               └── RegexCheckTest.java
         └── resources
             └── pollseed
                 └── tools
-                    └── helper
-                        └── test_FileParser.txt
+                    ├── helper
+                    └── util
 ```
 
 ##Domain
