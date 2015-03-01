@@ -2,6 +2,9 @@ apply plugin: "java"
 apply plugin: "eclipse"
 apply plugin: "project-report"
 apply plugin: "application"
+apply plugin: 'jacoco'
+apply plugin: 'com.github.kt3k.coveralls'
+
 
 def jdkVersion = 1.7
 def defaultEncoding = 'UTF-8'
@@ -36,6 +39,27 @@ dependencies {
     compile 'org.jsoup:jsoup:1.8.1'
 }
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
+    }
+}
+
 startScripts {
     applicationName = "kitlib"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
 }
