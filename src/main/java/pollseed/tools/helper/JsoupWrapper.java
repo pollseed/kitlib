@@ -75,6 +75,9 @@ public class JsoupWrapper extends AbstractJsoupWrapper {
     }
 
     private Elements getCssQuery() {
+        if (doc == null) {
+            return new Elements();
+        }
         if (StringUtils.isBlank(cssQuery)) {
             return new Elements();
         } else {
