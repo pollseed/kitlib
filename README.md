@@ -81,3 +81,7 @@ Auxiliary source that will be called.
 ####util
 * Collection of static functions.
 * A high degree of influence on the frequency-range both to be used.
+
+##[Wiki](https://github.com/pollseed/kitlib/wiki)
+####[Release Tags Rule](https://github.com/pollseed/kitlib/wiki/Release)
+release tags rule
