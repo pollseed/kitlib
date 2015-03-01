@@ -3,18 +3,28 @@ package pollseed.tools.helper;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import pollseed.tools.helper.abst.AbstractJsoupWrapper;
 
 /**
  * Jsoup Web Scraping Wrapper
  */
-public class JsoupWrapper {
+public class JsoupWrapper extends AbstractJsoupWrapper {
 
-    private URL url;
+    /**
+     * Not set to handle by connecting an instance.
+     */
+    public JsoupWrapper() {
+    }
 
-    private Document doc;
+    public JsoupWrapper(String arg) throws MalformedURLException {
+        set(arg, null, null);
+    }
 
     /**
      * Set URL that want to web-scraping.
@@ -24,15 +34,12 @@ public class JsoupWrapper {
      * @return JsoupWrapper
      * @throws MalformedURLException
      */
-    public JsoupWrapper set(String arg) throws MalformedURLException {
+    @Override
+    public JsoupWrapper set(String arg, String css, String tag) throws MalformedURLException {
         url = new URL(arg);
+        cssQuery = css;
+        tagName = tag;
         return this;
-    }
-
-    /**
-     * Not set to handle by connecting an instance.
-     */
-    public JsoupWrapper() {
     }
 
     /**
@@ -41,6 +48,7 @@ public class JsoupWrapper {
      * @return JsoupWrapper
      * @throws Exception
      */
+    @Override
     public JsoupWrapper execute() throws Exception {
         validation();
         Connection connect = Jsoup.connect(url.toString());
@@ -57,8 +65,30 @@ public class JsoupWrapper {
         return doc;
     }
 
-    private void validation() throws IllegalAccessError {
-        if (url == null)
-            throw new IllegalAccessError();
+    /**
+     * Get CSS.
+     * 
+     * @return Elements
+     */
+    public Elements css() {
+        return getCssQuery();
     }
+
+    private Elements getCssQuery() {
+        if (StringUtils.isBlank(cssQuery)) {
+            return null;
+        } else {
+            return doc.select(cssQuery);
+        }
+    }
+
+    /**
+     * Get tag.
+     * 
+     * @return Elements
+     */
+    public Elements tag() {
+        return css().tagName(tagName);
+    }
+
 }

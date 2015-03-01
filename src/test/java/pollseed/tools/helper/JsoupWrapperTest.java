@@ -12,9 +12,9 @@ public class JsoupWrapperTest {
      */
     @Test
     public void test_JsoupWrapper() {
-        JsoupWrapper wrapper = new JsoupWrapper();
+        JsoupWrapper wrapper = null;
         try {
-            wrapper.set("http://pollseed.hatenablog.jp/feed");
+            wrapper = new JsoupWrapper("http://pollseed.hatenablog.jp/feed");
         } catch (MalformedURLException e) {
             Assert.fail(e.getMessage());
         }
