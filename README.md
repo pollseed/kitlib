@@ -37,3 +37,53 @@ $ gradle eclipse
 ```
 $ gradle test
 ```
+
+##Directory Structure
+
+```
+.
+├── LISENCE
+├── README.md
+├── bin
+├── build
+├── build.gradle
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── pollseed
+    │   │       └── tools
+    │   │           ├── helper
+    │   │           │   ├── FileParser.java
+    │   │           │   └── abst
+    │   │           │       └── AbstractFileParser.java
+    │   │           └── util
+    │   │               └── RegexCheck.java
+    │   └── resources
+    └── test
+        ├── java
+        │   └── pollseed
+        │       └── tools
+        │           ├── helper
+        │           │   └── FileParserTest.java
+        │           └── util
+        │               └── RegexCheckTest.java
+        └── resources
+            └── pollseed
+                └── tools
+                    └── helper
+                        └── test_FileParser.txt
+```
+
+##Domain
+src/main/java/pollseed
+
+###tools
+Auxiliary source that will be called.
+
+####helper
+* Collection of instance functions.
+* Or a local feature, many processes, such as run out creating an instance.
+
+####util
+* Collection of static functions.
+* A high degree of influence on the frequency-range both to be used.

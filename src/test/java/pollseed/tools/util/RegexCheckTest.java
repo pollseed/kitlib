@@ -1,8 +1,9 @@
-package pollseed.tools.helper;
+package pollseed.tools.util;
 
 import org.junit.Test;
 
-import pollseed.tools.helper.RegexCheck.RegexFormat;
+import pollseed.tools.util.RegexCheck;
+import pollseed.tools.util.RegexCheck.RegexFormat;
 
 public class RegexCheckTest {
     @Test

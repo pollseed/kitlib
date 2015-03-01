@@ -1,10 +1,10 @@
-package pollseed.tools.helper;
+package pollseed.tools.util;
 
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
-import pollseed.tools.helper.RegexCheck.RegexFormat.RegexType;
+import pollseed.tools.util.RegexCheck.RegexFormat.RegexType;
 
 // UN-SAFE Regex-Check-Class
 public class RegexCheck {
