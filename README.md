@@ -11,7 +11,7 @@
 * gradle 2.2.1
 
 ##Summary
-Java Auxiliary Library
+'kitlib' is Kit's Library, Java Auxiliary Library
 
 ##Getting Started
 
