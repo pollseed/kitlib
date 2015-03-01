@@ -7,7 +7,12 @@ import pollseed.tools.util.RegexCheck.RegexFormat;
 
 public class RegexCheckTest {
     @Test
-    public void test_RegexCheck() {
+    public void test_RegexType() {
+        test_softUrl();
+        test_hartFormat();
+    }
+
+    private void test_hartFormat() {
         org.junit.Assert.assertEquals(RegexCheck.regex(RegexFormat.RegexType.NUM, "09238475"), true);
         org.junit.Assert.assertEquals(RegexCheck.regex(RegexFormat.RegexType.NUM, "KAKAKA"), false);
         org.junit.Assert.assertEquals(RegexCheck.regex(RegexFormat.RegexType.LOWERCASE, "jfhuiapefea"), true);
@@ -32,5 +37,9 @@ public class RegexCheckTest {
         org.junit.Assert.assertEquals(RegexCheck.regex(RegexFormat.RegexType.KANJI, "藍上雄夏期区test華籠佐志嵩山曽田帙手都何塗音乃葉皮膚経保目見無目藻屋"), false);
         org.junit.Assert.assertEquals(RegexCheck.regex(RegexFormat.RegexType.JAPANESE, "藍上雄夏期エヂヲイエオ区華籠佐志嵩山曽オオえせぴ田帙手都何塗音乃あふふ葉皮膚経保目ヲイエ見無目藻屋"), true);
         org.junit.Assert.assertEquals(RegexCheck.regex(RegexFormat.RegexType.JAPANESE, "藍上雄夏期エヂヲイエオ区華籠佐志嵩山曽オオえせぴ田帙d手都何塗音乃あふふ葉皮膚経保目ヲイエ見無目藻屋"), false);
+    }
+
+    private void test_softUrl() {
+        org.junit.Assert.assertEquals(RegexCheck.regex("^(http|https)://[^/!-=?;:&].+$", "http://pollseed.hatenablog.jp/"), true);
     }
 }
