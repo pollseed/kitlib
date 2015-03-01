@@ -56,6 +56,11 @@ public class JsoupWrapper extends AbstractJsoupWrapper {
         return this;
     }
 
+    private void validation() throws IllegalAccessError {
+        if (url == null)
+            throw new IllegalAccessError();
+    }
+
     /**
      * Get Document.
      * 
