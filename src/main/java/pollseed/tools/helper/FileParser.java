@@ -12,6 +12,9 @@ import org.apache.commons.io.IOUtils;
 
 import pollseed.tools.helper.abst.AbstractFileParser;
 
+/**
+ * @deprecated not maintained future.
+ */
 public class FileParser extends AbstractFileParser {
 
     /**
@@ -38,6 +41,10 @@ public class FileParser extends AbstractFileParser {
 
     @Override
     public void parse(File file) {
+        if (file == null || !file.isFile() || !file.exists()) {
+            System.out.println("file is nullptr");
+            return;
+        }
         BufferedReader br = null;
         BufferedWriter bw = null;
         try {
