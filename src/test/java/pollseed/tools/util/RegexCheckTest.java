@@ -9,10 +9,10 @@ public class RegexCheckTest {
     @Test
     public void test_RegexType() {
         test_softUrl();
-        test_hartFormat();
+        test_hardFormat();
     }
 
-    private void test_hartFormat() {
+    private void test_hardFormat() {
         org.junit.Assert.assertEquals(RegexCheck.regex(RegexFormat.RegexType.NUM, "09238475"), true);
         org.junit.Assert.assertEquals(RegexCheck.regex(RegexFormat.RegexType.NUM, "KAKAKA"), false);
         org.junit.Assert.assertEquals(RegexCheck.regex(RegexFormat.RegexType.LOWERCASE, "jfhuiapefea"), true);
