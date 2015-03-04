@@ -8,8 +8,25 @@ import java.util.Map;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+/**
+ * List Utils.
+ * 
+ * @author pollseed
+ *
+ */
 public class ListUtils {
 
+    /**
+     * Returns by connecting the list each other specified.
+     * 
+     * @param listA
+     *            List<TYPE>
+     * @param listB
+     *            List<TYPE>
+     * @param isRmNull
+     *            Whether omit the null.
+     * @return List<TYPE>
+     */
     public static <TYPE> List<TYPE> join(List<TYPE> listA, List<TYPE> listB, boolean isRmNull) {
         if (listA == null || listA.isEmpty() || listB == null || listB.isEmpty()) {
             return listA;
@@ -23,6 +40,12 @@ public class ListUtils {
         return result;
     }
 
+    /**
+     * Omit the null of the specified list.
+     * 
+     * @param list
+     *            List<TYPE>
+     */
     public static <TYPE> void rmNull(List<TYPE> list) {
         if (list == null || list.isEmpty()) {
             return;
@@ -30,6 +53,15 @@ public class ListUtils {
         list.removeAll(Collections.singleton(null));
     }
 
+    /**
+     * Based on the specified key, and then mapped the list.
+     * 
+     * @param keys
+     *            KEY[]
+     * @param list
+     *            List<TYPE>
+     * @return Map<KEY, TYPE>
+     */
     public static <KEY, TYPE> Map<KEY, TYPE> convertMap(KEY[] keys, List<TYPE> list) {
         if (ArrayUtils.isEmpty(keys) || list == null || list.isEmpty() || list.size() != keys.length) {
             return null;
@@ -44,9 +76,6 @@ public class ListUtils {
             i++;
         }
         return result;
-    }
-
-    private ListUtils() {
     }
 
 }
