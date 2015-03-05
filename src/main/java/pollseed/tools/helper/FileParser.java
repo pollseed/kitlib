@@ -8,13 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import org.apache.commons.io.IOUtils;
-
 import pollseed.tools.helper.abst.AbstractFileParser;
 
-/**
- * @deprecated not maintained future.
- */
 public class FileParser extends AbstractFileParser {
 
     /**
@@ -45,16 +40,12 @@ public class FileParser extends AbstractFileParser {
             System.out.println("file is nullptr");
             return;
         }
-        BufferedReader br = null;
-        BufferedWriter bw = null;
-        try {
-            br = new BufferedReader(new FileReader(file));
-            bw = new BufferedWriter(new PrintWriter(super.path));
+        try (BufferedReader br = new BufferedReader(new FileReader(file)); BufferedWriter bw = new BufferedWriter(new PrintWriter(path));) {
             String line = null;
             int lineCnt = 0;
             while ((line = br.readLine()) != null) {
-                String[] strs = line.split(super.splits);
-                if (strs.length <= super.cut) {
+                String[] strs = line.split(splits);
+                if (strs.length <= cut) {
                     continue;
                 }
                 if (lineCnt != 0) {
@@ -80,9 +71,6 @@ public class FileParser extends AbstractFileParser {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            IOUtils.closeQuietly(br);
-            IOUtils.closeQuietly(bw);
         }
     }
 }

@@ -1,45 +1,35 @@
 package pollseed.tools.helper;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 
-import org.apache.commons.io.IOUtils;
+import junit.framework.Assert;
+
 import org.junit.Test;
 
 public class FileParserTest {
-    private final String FORMAT_LOGGER = "UNIT_TEST [%s] %s";
 
-    // TODO test method
-    public void test_FileParser() {
-        System.out.println(String.format(FORMAT_LOGGER, FileReader.class, "start"));
-        BufferedReader in = null;
-        BufferedWriter out = null;
-        String uploadPath = "/src/test/resources/pollseed/tools/helper/output/test_FileParser.txt";
-        File file = new File(uploadPath);
-        try {
-            in = new BufferedReader(new FileReader(new File("/src/test/resources/pollseed/tools/helper/test_FileParser.txt")));
+    private final String WORK_DIR = String.format("%s%s", System.getProperty("user.dir"), "/src/test/resources/pollseed/tools/helper/");
+    private final String OUTPUT_DIR = String.format("%s%s", WORK_DIR, "output/test_FileParser.txt");
+    private final String INPUT_DIR = String.format("%s%s", WORK_DIR, "test_FileParser.txt");
+    private final String INPUT_OK_DIR = String.format("%s%s", WORK_DIR, "test_FileParser_OK.txt");
 
-            out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+    @Test
+    public void test_FileParser() throws IOException {
+        FileParser parser = new FileParser(OUTPUT_DIR, 0);
+        parser.parse(new File(INPUT_DIR));
+
+        try (BufferedReader in = new BufferedReader(new FileReader(new File(OUTPUT_DIR)));
+                BufferedReader in_ok = new BufferedReader(new FileReader(new File(INPUT_OK_DIR)))) {
 
             String line;
-            while ((line = in.readLine()) != null) {
-                out.write(line);
-                out.newLine();
-            }
-            out.flush();
+            while ((line = in.readLine()) != null)
+                Assert.assertEquals(line, in_ok.readLine());
 
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            IOUtils.closeQuietly(in);
-            IOUtils.closeQuietly(out);
-            file.delete();
+            throw e;
         }
-        System.out.println(String.format(FORMAT_LOGGER, FileReader.class, "end"));
     }
 }
