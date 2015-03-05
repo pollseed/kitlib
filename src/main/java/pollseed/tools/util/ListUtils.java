@@ -41,6 +41,32 @@ public class ListUtils {
     }
 
     /**
+     * Returns by connecting the lists each other specified.
+     * 
+     * @param isRmNull
+     *            Whether omit the null.
+     * @param listA
+     *            List<TYPE>
+     * @param lists
+     *            List<TYPE>...
+     * @return List<TYPE>
+     */
+    @SafeVarargs
+    public static <TYPE> List<TYPE> join(boolean isRmNull, List<TYPE> listA, List<TYPE>... lists) {
+        if (listA == null || listA.isEmpty() || lists == null || lists.length == 0) {
+            return listA;
+        }
+        List<TYPE> result = new ArrayList<TYPE>();
+        for (List<TYPE> list : lists) {
+            if (list == null || list.isEmpty()) {
+                continue;
+            }
+            result.addAll(list);
+        }
+        return join(listA, result, isRmNull);
+    }
+
+    /**
      * Omit the null of the specified list.
      * 
      * @param list
