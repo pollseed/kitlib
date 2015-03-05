@@ -19,15 +19,15 @@ public class ListUtils {
     /**
      * Returns by connecting the list each other specified.
      * 
+     * @param isRmNull
+     *            Whether omit the null.
      * @param listA
      *            List<TYPE>
      * @param listB
      *            List<TYPE>
-     * @param isRmNull
-     *            Whether omit the null.
      * @return List<TYPE>
      */
-    public static <TYPE> List<TYPE> join(List<TYPE> listA, List<TYPE> listB, boolean isRmNull) {
+    public static <TYPE> List<TYPE> join(boolean isRmNull, List<TYPE> listA, List<TYPE> listB) {
         if (listA == null || listA.isEmpty() || listB == null || listB.isEmpty()) {
             return listA;
         }
@@ -63,7 +63,7 @@ public class ListUtils {
             }
             result.addAll(list);
         }
-        return join(listA, result, isRmNull);
+        return join(isRmNull, listA, result);
     }
 
     /**

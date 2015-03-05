@@ -30,7 +30,7 @@ public class ListUtilsTest {
         baseList.add("hogehoge1");
         baseList.add("fugafuga1");
 
-        List<String> join = ListUtils.join(a, b, true);
+        List<String> join = ListUtils.join(true, a, b);
         Assert.assertTrue(join.size() == baseList.size());
         for (String c : join) {
             Assert.assertTrue(baseList.contains(c));
