@@ -33,6 +33,7 @@ public class JsoupWrapper extends AbstractJsoupWrapper {
      *            URL
      * @return JsoupWrapper
      * @throws MalformedURLException
+     *             MalformedURLException
      */
     @Override
     public JsoupWrapper set(String arg, String css, String tag) throws MalformedURLException {
@@ -47,6 +48,7 @@ public class JsoupWrapper extends AbstractJsoupWrapper {
      * 
      * @return JsoupWrapper
      * @throws Exception
+     *             Exception
      */
     @Override
     public JsoupWrapper execute() throws Exception {

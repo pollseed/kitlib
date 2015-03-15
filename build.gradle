@@ -6,10 +6,13 @@ apply plugin: 'jacoco'
 apply plugin: 'com.github.kt3k.coveralls'
 
 
-def jdkVersion = 1.7
+def jdkVersion = 1.8
 def defaultEncoding = 'UTF-8'
 [compileJava, compileTestJava]*.options*.encoding = defaultEncoding
 processResources.destinationDir = compileJava.destinationDir
+
+sourceCompatibility = jdkVersion
+targetCompatibility = jdkVersion
 
 javadoc {
     options.encoding(defaultEncoding)

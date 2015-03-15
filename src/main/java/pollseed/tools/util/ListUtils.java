@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -19,13 +20,15 @@ public class ListUtils {
     /**
      * Returns by connecting the list each other specified.
      * 
+     * @param <TYPE>
+     *            TYPE
      * @param isRmNull
      *            Whether omit the null.
      * @param listA
-     *            List<TYPE>
+     *            {@code List<TYPE>}
      * @param listB
-     *            List<TYPE>
-     * @return List<TYPE>
+     *            {@code List<TYPE>}
+     * @return {@code List<TYPE>}
      */
     public static <TYPE> List<TYPE> join(boolean isRmNull, List<TYPE> listA, List<TYPE> listB) {
         if (listA == null || listA.isEmpty() || listB == null || listB.isEmpty()) {
@@ -43,13 +46,15 @@ public class ListUtils {
     /**
      * Returns by connecting the lists each other specified.
      * 
+     * @param <TYPE>
+     *            TYPE
      * @param isRmNull
      *            Whether omit the null.
      * @param listA
-     *            List<TYPE>
+     *            {@code List<TYPE>}
      * @param lists
-     *            List<TYPE>...
-     * @return List<TYPE>
+     *            {@code List<TYPE>...}
+     * @return {@code List<TYPE>}
      */
     @SafeVarargs
     public static <TYPE> List<TYPE> join(boolean isRmNull, List<TYPE> listA, List<TYPE>... lists) {
@@ -69,8 +74,10 @@ public class ListUtils {
     /**
      * Omit the null of the specified list.
      * 
+     * @param <TYPE>
+     *            TYPE
      * @param list
-     *            List<TYPE>
+     *            {@code List<TYPE>}
      */
     public static <TYPE> void rmNull(List<TYPE> list) {
         if (list == null || list.isEmpty()) {
@@ -80,13 +87,40 @@ public class ListUtils {
     }
 
     /**
+     * Remove the specified element from the specified list.
+     * 
+     * @param <TYPE>
+     *            TYPE
+     * @param element
+     *            TYPE
+     * @param lists
+     *            {@code List<TYPE>...}
+     * @return {@code List<List<TYPE>>}
+     */
+    @SafeVarargs
+    public static <TYPE> List<List<TYPE>> removeAll(TYPE element, List<TYPE>... lists) {
+        if (element == null || lists == null || lists.length == 0) {
+            return null;
+        }
+        List<List<TYPE>> result = new ArrayList<List<TYPE>>();
+        for (List<TYPE> list : lists) {
+            result.add(list.stream().filter(e -> !e.equals(element)).collect(Collectors.toList()));
+        }
+        return result;
+    }
+
+    /**
      * Based on the specified key, and then mapped the list.
      * 
+     * @param <KEY>
+     *            KEY
+     * @param <TYPE>
+     *            TYPE
      * @param keys
      *            KEY[]
      * @param list
-     *            List<TYPE>
-     * @return Map<KEY, TYPE>
+     *            {@code List<TYPE>}
+     * @return {@code Map<KEY, TYPE>}
      */
     public static <KEY, TYPE> Map<KEY, TYPE> convertMap(KEY[] keys, List<TYPE> list) {
         if (ArrayUtils.isEmpty(keys) || list == null || list.isEmpty() || list.size() != keys.length) {

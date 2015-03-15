@@ -1,6 +1,7 @@
 package pollseed.tools.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -64,6 +65,23 @@ public class ListUtilsTest {
         Assert.assertTrue(join.size() == baseList.size());
         for (String d : join) {
             Assert.assertTrue(baseList.contains(d));
+        }
+    }
+
+    @Test
+    public void test_removeAll() {
+        final String _fuga = "fugafuga";
+        List<String> list = Arrays.asList("hogehoge", _fuga, "piyopiyo", _fuga);
+
+        List<List<String>> null_element = ListUtils.removeAll(null, list);
+        List<List<String>> null_list = ListUtils.removeAll(_fuga, null);
+        Assert.assertNull(null_element);
+        Assert.assertNull(null_list);
+
+        List<List<String>> result = ListUtils.removeAll(_fuga, list);
+        for (List<String> s : result) {
+            Assert.assertTrue(s.size() == 2);
+            Assert.assertFalse(s.contains(_fuga));
         }
     }
 

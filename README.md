@@ -7,7 +7,7 @@
 [![Coverage Status](https://coveralls.io/repos/pollseed/kitlib/badge.svg?branch=master)](https://coveralls.io/r/pollseed/kitlib?branch=master)
 
 ##Environment
-* java 1.7.0_72
+* java 1.8.0_31 推奨
 * gradle 2.2.1
 
 ##Summary
