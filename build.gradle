@@ -5,8 +5,6 @@ apply plugin: "application"
 apply plugin: 'jacoco'
 apply plugin: 'com.github.kt3k.coveralls'
 
-defaultTasks 'build', 'cleanEclipse', 'eclipse', 'test'
-
 def jdkVersion = JavaVersion.VERSION_1_8
 def defaultEncoding = 'UTF-8'
 
