@@ -11,9 +11,6 @@ def defaultEncoding = 'UTF-8'
 [compileJava, compileTestJava]*.options*.encoding = defaultEncoding
 processResources.destinationDir = compileJava.destinationDir
 
-sourceCompatibility = jdkVersion
-targetCompatibility = jdkVersion
-
 javadoc {
     options.encoding(defaultEncoding)
     options.setEncoding(defaultEncoding)
