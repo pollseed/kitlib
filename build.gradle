@@ -8,8 +8,10 @@ apply plugin: 'com.github.kt3k.coveralls'
 def jdkVersion = JavaVersion.VERSION_1_8
 def defaultEncoding = 'UTF-8'
 
-sourceCompatibility = jdkVersion
-targetCompatibility = jdkVersion
+compileJava {
+    sourceCompatibility = jdkVersion
+    targetCompatibility = jdkVersion
+}
 
 [compileJava, compileTestJava]*.options*.encoding = defaultEncoding
 processResources.destinationDir = compileJava.destinationDir
