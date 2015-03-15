@@ -3,3 +3,8 @@ machine:
     version: oraclejdk8
   timezone:
     Asia/Tokyo
+
+test:
+  override:
+    - ./gradlew check
+
