@@ -7,7 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import pollseed.tools.util.RegexCheck.RegexFormat.RegexType;
 
-// UN-SAFE Regex-Check-Class
+/**
+ * UN-SAFE Regex-Check-Class
+ * 
+ * @author pollseed
+ */
 public class RegexCheck {
 
     /**
@@ -23,7 +27,20 @@ public class RegexCheck {
         validation(regex, target);
         return Pattern.matches(regex, target);
     }
-    
+
+    /**
+     * UN-SAFE
+     * 
+     * get from regex to group
+     * 
+     * @param group
+     *            get regex point
+     * @param target
+     *            check String
+     * @param regexes
+     *            check regex String
+     * @return group
+     */
     public static String regex(int group, String target, String... regexes) {
         validation(target, regexes);
         StringBuilder regex = new StringBuilder();
@@ -39,7 +56,7 @@ public class RegexCheck {
             return matcher.group(group);
         return null;
     }
-    
+
     /**
      * UN-SAFE
      * 
@@ -80,13 +97,13 @@ public class RegexCheck {
         for (String str : strs)
             require(str);
     }
-    
+
     private static void require(StringBuilder sb) {
         if (sb == null || sb.length() == 0)
             throw new NullPointerException("StringBuilder is blank.");
         require(sb.toString());
     }
-    
+
     private static void require(RegexType type) {
         if (type == null)
             throw new NullPointerException("type is nullptr.");

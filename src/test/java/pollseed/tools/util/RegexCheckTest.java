@@ -10,6 +10,7 @@ public class RegexCheckTest {
     public void test_RegexType() {
         test_softUrl();
         test_hardFormat();
+        test_regex_group();
     }
 
     private void test_hardFormat() {
@@ -41,5 +42,10 @@ public class RegexCheckTest {
 
     private void test_softUrl() {
         org.junit.Assert.assertEquals(RegexCheck.regex("^(http|https)://[^/!-=?;:&].+$", "http://pollseed.hatenablog.jp/"), true);
+    }
+
+    private void test_regex_group() {
+        org.junit.Assert.assertEquals(RegexCheck.regex(2, "dinner=chicken breakfast=meat", "breakfast=", ".+"), "meat");
+        org.junit.Assert.assertNull(RegexCheck.regex(2, "dinner=chicken breakfast=meat", "breakfst=", "dinnnnner"));
     }
 }
