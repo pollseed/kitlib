@@ -22,7 +22,23 @@ public class RegexCheck {
         validation(regex, target);
         return Pattern.matches(regex, target);
     }
+    
+    public static String regex(int group, String target, String... regexes) {
+        validation(target, regexes);
+        StringBuilder regex = new StringBuilder();
+        for (String _regex : regexes) {
+            regex.append("(");
+            regex.append(_regex);
+            regex.append(")");
+        }
+        require(regex);
 
+        Matcher matcher = Pattern.compile(regex.toString()).matcher(target);
+        if (matcher.find())
+            return matcher.group(group);
+        return null;
+    }
+    
     /**
      * UN-SAFE
      * 
@@ -42,6 +58,11 @@ public class RegexCheck {
         require(target);
     }
 
+    private static void validation(String target, String... regexes) {
+        require(target);
+        require(regexes);
+    }
+
     private static void validation(RegexType type, String target) {
         require(type);
         require(target);
@@ -52,6 +73,19 @@ public class RegexCheck {
             throw new NullPointerException("string is blank.");
     }
 
+    private static void require(String... strs) {
+        if (strs == null || strs.length == 0)
+            throw new NullPointerException("string array is blank.");
+        for (String str : strs)
+            require(str);
+    }
+    
+    private static void require(StringBuilder sb) {
+        if (sb == null || sb.length() == 0)
+            throw new NullPointerException("StringBuilder is blank.");
+        require(sb.toString());
+    }
+    
     private static void require(RegexType type) {
         if (type == null)
             throw new NullPointerException("type is nullptr.");
