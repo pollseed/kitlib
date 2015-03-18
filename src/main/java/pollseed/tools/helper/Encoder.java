@@ -2,7 +2,9 @@ package pollseed.tools.helper;
 
 import java.io.UnsupportedEncodingException;
 
-public class Encoder extends AbstEncoder {
+import pollseed.tools.helper.abst.AbstractEncoder;
+
+public class Encoder extends AbstractEncoder {
     public Encoder(String str) {
         word = str;
     }
