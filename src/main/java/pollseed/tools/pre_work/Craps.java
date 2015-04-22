@@ -1,4 +1,4 @@
-package study;
+package pollseed.tools.pre_work;
 
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -13,7 +13,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 
-import org.seasar.util.misc.Base64Util;
+//import org.seasar.util.misc.Base64Util;
 
 public class Craps {
     private static final int BIT_7 = 128;
@@ -244,8 +244,8 @@ public class Craps {
             try {
                 Cipher c = Cipher.getInstance(algorithmC.toString());
                 c.init(Cipher.ENCRYPT_MODE, secretKey);
-                encrypting = Base64Util.encode(c.doFinal(uuid.toString().getBytes()));
-            } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+//                encrypting = Base64Util.encode(c.doFinal(uuid.toString().getBytes()));
+            } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException/* | IllegalBlockSizeException | BadPaddingException*/ e) {
                 throw new RuntimeException(e);
             }
         }
