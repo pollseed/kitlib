@@ -16,6 +16,7 @@ import javax.crypto.NoSuchPaddingException;
 import org.seasar.util.misc.Base64Util;
 
 public class Craps {
+    private static final int BIT_7 = 128;
     static Craps self = new Craps();
 
     public static void main(String[] args) {
@@ -31,13 +32,13 @@ public class Craps {
 
     private static void do_cipher(Hash hash) {
         ln("hash", "秘密鍵", "暗号化");
-        hash.strongerEncrypt(CipherAlgorithm.AES, KeyGeneratorAlgorithm.AES, 128);
+        hash.strongerEncrypt(CipherAlgorithm.AES, KeyGeneratorAlgorithm.AES, BIT_7);
         ln(CipherAlgorithm.AES.name(), KeyGeneratorAlgorithm.AES.name(), hash.encrypting);
-        hash.strongerEncrypt(CipherAlgorithm.AES_CBC_PKCS5Padding, KeyGeneratorAlgorithm.AES, 128);
+        hash.strongerEncrypt(CipherAlgorithm.AES_CBC_PKCS5Padding, KeyGeneratorAlgorithm.AES, BIT_7);
         ln(CipherAlgorithm.AES_CBC_PKCS5Padding.name(), KeyGeneratorAlgorithm.AES.name(), hash.encrypting);
-        hash.strongerEncrypt(CipherAlgorithm.AES_ECB_PKCS5Padding, KeyGeneratorAlgorithm.AES, 128);
+        hash.strongerEncrypt(CipherAlgorithm.AES_ECB_PKCS5Padding, KeyGeneratorAlgorithm.AES, BIT_7);
         ln(CipherAlgorithm.AES_ECB_PKCS5Padding.name(), KeyGeneratorAlgorithm.AES.name(), hash.encrypting);
-        hash.strongerEncrypt(CipherAlgorithm.BLOWFISH, KeyGeneratorAlgorithm.BLOWFISH, 128);
+        hash.strongerEncrypt(CipherAlgorithm.BLOWFISH, KeyGeneratorAlgorithm.BLOWFISH, BIT_7);
         ln(CipherAlgorithm.BLOWFISH.name(), KeyGeneratorAlgorithm.BLOWFISH.name(), hash.encrypting);
     }
 
@@ -93,12 +94,12 @@ public class Craps {
 
         @Override
         public String toHyphen() {
-            return this.name().replaceAll("_", "-");
+            return self.toHyphen(this.name());
         }
 
         @Override
         public String toSlash() {
-            return this.name().replaceAll("_", "/");
+            return self.toSlash(this.name());
         }
     }
 
@@ -125,12 +126,12 @@ public class Craps {
 
         @Override
         public String toHyphen() {
-            return this.name().replaceAll("_", "-");
+            return self.toHyphen(this.name());
         }
 
         @Override
         public String toSlash() {
-            return this.name().replaceAll("_", "/");
+            return self.toSlash(this.name());
         }
     }
 
@@ -154,12 +155,12 @@ public class Craps {
 
         @Override
         public String toHyphen() {
-            return this.name().replaceAll("_", "-");
+            return self.toHyphen(this.name());
         }
 
         @Override
         public String toSlash() {
-            return this.name().replaceAll("_", "/");
+            return self.toSlash(this.name());
         }
     }
 
@@ -173,13 +174,21 @@ public class Craps {
 
         @Override
         public String toHyphen() {
-            return this.name().replaceAll("_", "-");
+            return self.toHyphen(this.name());
         }
 
         @Override
         public String toSlash() {
-            return this.name().replaceAll("_", "/");
+            return self.toSlash(this.name());
         }
+    }
+
+    private String toHyphen(String name) {
+        return name.replaceAll("_", "-");
+    }
+
+    private String toSlash(String name) {
+        return name.replaceAll("_", "/");
     }
 
     public class Hash {
