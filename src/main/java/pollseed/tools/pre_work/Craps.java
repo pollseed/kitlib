@@ -25,7 +25,7 @@ public class Craps {
     }
 
     private static void exec_Hash() {
-        Hash hash = self.new Hash();
+        Hash hash = new Hash();
         do_md(hash);
         do_cipher(hash);
     }
@@ -191,7 +191,7 @@ public class Craps {
         return name.replaceAll("_", "/");
     }
 
-    public class Hash {
+    public static class Hash {
         Key secretKey = null;
         UUID uuid = null;
         String encrypting = null;
