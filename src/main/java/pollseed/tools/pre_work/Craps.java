@@ -16,59 +16,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 
 public class Craps {
-    private static final int BIT_7 = 128;
     static Craps self = new Craps();
-
-    public static void main(String[] args) {
-        exec_Hash();
-
-    }
-
-    private static void exec_Hash() {
-        Hash hash = new Hash();
-        do_md(hash);
-        do_cipher(hash);
-    }
-
-    private static void do_cipher(Hash hash) {
-        ln("hash", "秘密鍵", "暗号化");
-        hash.strongerEncrypt(CipherAlgorithm.AES, KeyGeneratorAlgorithm.AES, BIT_7);
-        ln(CipherAlgorithm.AES.name(), KeyGeneratorAlgorithm.AES.name(), hash.encrypting);
-        hash.strongerEncrypt(CipherAlgorithm.AES_CBC_PKCS5Padding, KeyGeneratorAlgorithm.AES, BIT_7);
-        ln(CipherAlgorithm.AES_CBC_PKCS5Padding.name(), KeyGeneratorAlgorithm.AES.name(), hash.encrypting);
-        hash.strongerEncrypt(CipherAlgorithm.AES_ECB_PKCS5Padding, KeyGeneratorAlgorithm.AES, BIT_7);
-        ln(CipherAlgorithm.AES_ECB_PKCS5Padding.name(), KeyGeneratorAlgorithm.AES.name(), hash.encrypting);
-        hash.strongerEncrypt(CipherAlgorithm.BLOWFISH, KeyGeneratorAlgorithm.BLOWFISH, BIT_7);
-        ln(CipherAlgorithm.BLOWFISH.name(), KeyGeneratorAlgorithm.BLOWFISH.name(), hash.encrypting);
-    }
-
-    private static void do_md(Hash hash) {
-        ln("秘密鍵", "暗号化");
-        hash.encrypt(MessageDigestAlgorithm.MD2);
-        ln(MessageDigestAlgorithm.MD2.name(), hash.encrypting);
-        hash.encrypt(MessageDigestAlgorithm.MD5);
-        ln(MessageDigestAlgorithm.MD5.name(), hash.encrypting);
-        hash.encrypt(MessageDigestAlgorithm.SHA_1);
-        ln(MessageDigestAlgorithm.SHA_1.name(), hash.encrypting);
-        hash.encrypt(MessageDigestAlgorithm.SHA_256);
-        ln(MessageDigestAlgorithm.SHA_256.name(), hash.encrypting);
-        hash.encrypt(MessageDigestAlgorithm.SHA_384);
-        ln(MessageDigestAlgorithm.SHA_384.name(), hash.encrypting);
-        hash.encrypt(MessageDigestAlgorithm.SHA_512);
-        ln(MessageDigestAlgorithm.SHA_512.name(), hash.encrypting);
-    }
-
-    private static void ln(String... logger) {
-        StringBuilder sb = new StringBuilder();
-        int i = 0;
-        for (String l : logger) {
-            if (i != 0)
-                sb.append("\t");
-            sb.append(l);
-            i++;
-        }
-        System.out.println(new String(sb.toString()));
-    }
 
     interface Algorithm {
         @Override
