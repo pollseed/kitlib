@@ -15,8 +15,11 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 
-public class Craps {
-    static Craps self = new Craps();
+/**
+ * ハッシュ生成用ヘルパー
+ */
+public class HashHelper {
+    static HashHelper self = new HashHelper();
 
     interface Algorithm {
         @Override
@@ -27,6 +30,9 @@ public class Craps {
         String toSlash();
     }
 
+    /**
+     * Message Digestのアルゴリズム
+     */
     public static enum MessageDigestAlgorithm implements Algorithm {
         MD2,
         MD5,
@@ -51,6 +57,9 @@ public class Craps {
         }
     }
 
+    /**
+     * Cipherのアルゴリズム
+     */
     public static enum CipherAlgorithm implements Algorithm {
         AES,
         AES_CBC_PKCS5Padding,
@@ -83,6 +92,9 @@ public class Craps {
         }
     }
 
+    /**
+     * Key Generatorのアルゴリズム
+     */
     public static enum KeyGeneratorAlgorithm implements Algorithm {
         AES,
         ARCFOUR,
@@ -139,15 +151,26 @@ public class Craps {
         return name.replaceAll("_", "/");
     }
 
+    /**
+     * ハッシュクラス
+     */
     public static class Hash {
         Key secretKey = null;
         UUID uuid = null;
         String encrypting = null;
 
+        /**
+         * UUIDを生成
+         */
         public void create() {
             uuid = UUID.randomUUID();
         }
 
+        /**
+         * シークレットキーを生成
+         * @param algorithm
+         * @param length
+         */
         public void createSecretKey(KeyGeneratorAlgorithm algorithm, int length) {
             try {
                 KeyGenerator generator = KeyGenerator.getInstance(algorithm.toString());
@@ -158,6 +181,10 @@ public class Craps {
             }
         }
 
+        /**
+         * 指定されたアルゴリズムで暗号化
+         * @param algorithm
+         */
         public void encrypt(MessageDigestAlgorithm algorithm) {
             if (uuid == null)
                 create();
@@ -171,6 +198,11 @@ public class Craps {
             }
         }
 
+        /**
+         * 二進数に変換します
+         * @param b
+         * @return
+         */
         private String toHex(byte b) {
             return String.format("%02x", b);
         }
@@ -185,6 +217,12 @@ public class Craps {
             return md.digest();
         }
 
+        /**
+         * 指定されたアルゴリズムで秘密鍵を生成し、それを使って暗号化
+         * @param algorithmC
+         * @param algorithmK
+         * @param length
+         */
         public void strongerEncrypt(CipherAlgorithm algorithmC, KeyGeneratorAlgorithm algorithmK, int length) {
             if (uuid == null)
                 create();
