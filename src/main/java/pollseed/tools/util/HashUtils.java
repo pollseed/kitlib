@@ -1,4 +1,4 @@
-package pollseed.tools.pre_work;
+package pollseed.tools.util;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -18,8 +18,8 @@ import javax.crypto.NoSuchPaddingException;
 /**
  * ハッシュ生成用ヘルパー
  */
-public class HashHelper {
-    static HashHelper self = new HashHelper();
+public class HashUtils {
+    static HashUtils self = new HashUtils();
 
     interface Algorithm {
         @Override
