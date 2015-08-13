@@ -168,8 +168,8 @@ public class HashUtils {
 
         /**
          * シークレットキーを生成
-         * @param algorithm
-         * @param length
+         * @param algorithm KeyGeneratorAlgorithm
+         * @param length 秘密鍵の長さ
          */
         public void createSecretKey(KeyGeneratorAlgorithm algorithm, int length) {
             try {
@@ -183,7 +183,7 @@ public class HashUtils {
 
         /**
          * 指定されたアルゴリズムで暗号化
-         * @param algorithm
+         * @param algorithm MessageDigestAlgorithm
          */
         public void encrypt(MessageDigestAlgorithm algorithm) {
             if (uuid == null)
@@ -200,7 +200,7 @@ public class HashUtils {
 
         /**
          * 二進数に変換します
-         * @param b
+         * @param b 変換前
          * @return
          */
         private String toHex(byte b) {
@@ -219,9 +219,9 @@ public class HashUtils {
 
         /**
          * 指定されたアルゴリズムで秘密鍵を生成し、それを使って暗号化
-         * @param algorithmC
-         * @param algorithmK
-         * @param length
+         * @param algorithmC CipherAlgorithm
+         * @param algorithmK KeyGeneratorAlgorithm
+         * @param length 秘密鍵の長さ
          */
         public void strongerEncrypt(CipherAlgorithm algorithmC, KeyGeneratorAlgorithm algorithmK, int length) {
             if (uuid == null)
