@@ -1,4 +1,4 @@
-package main.common;
+package pollseed.tools.helper.interfaces;
 
 /**
  * 処理をするためのインタフェース.

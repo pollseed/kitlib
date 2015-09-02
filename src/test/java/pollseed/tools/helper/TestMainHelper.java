@@ -1,13 +1,12 @@
-package main.test_beautifull;
-
-import main.common.MainHelper;
+package pollseed.tools.helper;
 
 import org.apache.commons.lang3.StringUtils;
+import pollseed.tools.helper.abst.AbstractMainHelper;
 
 public final class TestMainHelper extends AbstractMainHelper {
 
     public static void main(String[] args) {
-        new TestBeautifull().run();
+        new TestMainHelper().run();
     }
 
     @Override

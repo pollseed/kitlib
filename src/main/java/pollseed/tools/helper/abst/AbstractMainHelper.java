@@ -1,4 +1,7 @@
-package main.common;
+package pollseed.tools.helper.abst;
+
+import pollseed.tools.helper.interfaces.CommandPrinter;
+import pollseed.tools.helper.interfaces.Runner;
 
 import java.io.PrintStream;
 import java.util.List;
@@ -7,7 +10,7 @@ import java.util.List;
  * {@code main} メソッドのためのヘルパークラス
  *
  */
-public abstract class MainHelper implements Runner, CommandPrinter {
+public abstract class AbstractMainHelper implements Runner, CommandPrinter {
 
     /**
      * 主処理を書きます.
