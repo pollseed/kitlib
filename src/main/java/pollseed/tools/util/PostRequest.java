@@ -1,4 +1,4 @@
-package main.post;
+package pollseed.tools.util;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

@@ -16,6 +16,10 @@ import java.util.List;
 public final class TestMainHelper extends AbstractMainHelper {
     private static final String LINE_STR = "-------------";
     private static final String TEST_MESSAGE = "hoge";
+    private static final String TEST_MESSAGE_FORMAT = "hoge%s";
+    private static final String TEST1_MESSAGE = "hoge1";
+    private static final String TEST2_MESSAGE = "hoge2";
+    private static final String TEST3_MESSAGE = "hogehoge";
     private static ByteArrayOutputStream byteArrayOutputStream;
 
     @Test
@@ -64,19 +68,19 @@ public final class TestMainHelper extends AbstractMainHelper {
         @SuppressWarnings("serial")
         List<Object> list = new ArrayList<Object>() {
             {
-                add("hoge1");
-                add("hoge2");
+                add(TEST1_MESSAGE);
+                add(TEST2_MESSAGE);
             }
         };
         lnList(list);
         System.out.flush();
-        Assert.assertEquals(byteArrayOutputStream.toString(), "hoge1" + System.lineSeparator() + "hoge2" + System.lineSeparator());
+        Assert.assertEquals(byteArrayOutputStream.toString(), TEST1_MESSAGE + System.lineSeparator() + TEST2_MESSAGE + System.lineSeparator());
     }
 
     @Test
     public void 標準出力のテスト_埋め込み文字() {
-        String word = printf("hoge%s", "hoge");
-        Assert.assertEquals(word, "hogehoge");
+        String word = printf(TEST_MESSAGE_FORMAT, TEST_MESSAGE);
+        Assert.assertEquals(word, TEST3_MESSAGE);
     }
 
     @Test

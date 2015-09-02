@@ -1,4 +1,4 @@
-package main.post;
+package pollseed.tools.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
