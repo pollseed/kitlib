@@ -2,10 +2,13 @@ package pollseed.tools.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TreeSet;
 
 import junit.framework.Assert;
 
@@ -108,6 +111,36 @@ public class ListUtilsTest {
         while (iterator.hasNext()) {
             String key = iterator.next();
             Assert.assertEquals(baseMap.get(key), convertMap.get(key));
+        }
+    }
+
+    @Test
+    public void test_sort() {
+        final String[] AnswerNames = new String[] { "kaki", "あさがお", "ぁさがお", "アサガオ", "ァサガオ", "おおかみ", "かき", "カキ", "がき", "ガキ", "さがわけん", "バイク", "ん" };
+        int i = 0;
+        for (String str : ListUtils.sort(new ArrayList<String>() {
+            {
+                addAll(Collections.unmodifiableSet(new TreeSet<String>() {
+                    {
+                        add("おおかみ");
+                        add("さがわけん");
+                        add("ぁさがお");
+                        add("かき");
+                        add("カキ");
+                        add("アサガオ");
+                        add("がき");
+                        add("あさがお");
+                        add("バイク");
+                        add("ん");
+                        add("ァサガオ");
+                        add("ガキ");
+                        add("kaki");
+                    }
+                }));
+            }
+        }, Locale.JAPANESE)) {
+            Assert.assertEquals(AnswerNames[i], str);
+            i++;
         }
     }
 }
