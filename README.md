@@ -17,7 +17,7 @@
 
 ```
 $ gradle build
-$ gradle eclipse
+$ gradle eclipse # eclipseのビルドパスを通す
 ```
 
 ##Dependencies
