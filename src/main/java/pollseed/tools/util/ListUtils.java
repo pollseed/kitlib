@@ -150,6 +150,9 @@ public class ListUtils {
      * @return ソート済みリスト
      */
     public static <TYPE> List<TYPE> sort(List<TYPE> list, Locale locale) {
+        if (list == null || list.isEmpty()) {
+            return list;
+        }
         Collections.sort(list, Collator.getInstance(locale == null ? Locale.getDefault() : locale));
         return list;
     }
