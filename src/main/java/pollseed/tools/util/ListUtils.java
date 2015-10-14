@@ -33,7 +33,7 @@ public class ListUtils {
      * @return {@code List<TYPE>}
      */
     public static <TYPE> List<TYPE> join(boolean isRmNull, List<TYPE> listA, List<TYPE> listB) {
-        if (listA == null || listA.isEmpty() || listB == null || listB.isEmpty()) {
+        if (isEmpty(listA) || isEmpty(listB)) {
             return listA;
         }
         List<TYPE> result = new ArrayList<TYPE>();
@@ -60,7 +60,7 @@ public class ListUtils {
      */
     @SafeVarargs
     public static <TYPE> List<TYPE> join(boolean isRmNull, List<TYPE> listA, List<TYPE>... lists) {
-        if (listA == null || listA.isEmpty() || lists == null || lists.length == 0) {
+        if (isEmpty(listA) || lists == null || lists.length == 0) {
             return listA;
         }
         List<TYPE> result = new ArrayList<TYPE>();
@@ -82,7 +82,7 @@ public class ListUtils {
      *            {@code List<TYPE>}
      */
     public static <TYPE> void rmNull(List<TYPE> list) {
-        if (list == null || list.isEmpty()) {
+        if (isEmpty(list)) {
             return;
         }
         list.removeAll(Collections.singleton(null));
@@ -125,7 +125,7 @@ public class ListUtils {
      * @return {@code Map<KEY, TYPE>}
      */
     public static <KEY, TYPE> Map<KEY, TYPE> convertMap(KEY[] keys, List<TYPE> list) {
-        if (ArrayUtils.isEmpty(keys) || list == null || list.isEmpty() || list.size() != keys.length) {
+        if (ArrayUtils.isEmpty(keys) || isEmpty(list) || list.size() != keys.length) {
             return null;
         }
         int i = 0;
@@ -150,11 +150,23 @@ public class ListUtils {
      * @return ソート済みリスト
      */
     public static <TYPE> List<TYPE> sort(List<TYPE> list, Locale locale) {
-        if (list == null || list.isEmpty()) {
+        if (isEmpty(list)) {
             return list;
         }
         Collections.sort(list, Collator.getInstance(locale == null ? Locale.getDefault() : locale));
         return list;
+    }
+
+    /**
+     * 空リストかどうかを返します.
+     * 
+     * @param list
+     *            チェックしたいリスト
+     * 
+     * @return 空リストかどうか
+     */
+    private static <TYPE> boolean isEmpty(List<TYPE> list) {
+        return list == null || list.isEmpty();
     }
 
 }
