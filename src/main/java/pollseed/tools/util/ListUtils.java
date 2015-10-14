@@ -1,9 +1,11 @@
 package pollseed.tools.util;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -136,6 +138,20 @@ public class ListUtils {
             i++;
         }
         return result;
+    }
+
+    /**
+     * 指定したリストを指定したロケーションの規則に沿ってソート処理をします.
+     * 
+     * @param list
+     *            ソートしたいリスト
+     * @param locale
+     *            任意のロケーション
+     * @return ソート済みリスト
+     */
+    public static <TYPE> List<TYPE> sort(List<TYPE> list, Locale locale) {
+        Collections.sort(list, Collator.getInstance(locale == null ? Locale.getDefault() : locale));
+        return list;
     }
 
 }
