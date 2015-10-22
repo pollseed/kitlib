@@ -1,14 +1,20 @@
-package test.controller;
+package pollseed.tools.helper;
 
-import main.controller.Action.ProcessTimer.Type;
-import main.controller.Controller;
+import org.junit.Assert;
+import org.junit.Test;
+import pollseed.tools.helper.abst.Controller;
 
-public class TestController extends Controller {
-    public static void main(final String[] args) throws Exception {
-        new TestController().generator();
+import static pollseed.tools.helper.interfaces.Action.ProcessTimer.Type.MEASURE;
+
+public class ControllerTest extends Controller {
+
+    @Test
+    public void test_generator() throws Exception {
+        new ControllerTest().generator();
+        Assert.assertTrue(true);
     }
 
-    @ProcessTimer({ Type.MEASURE })
+    @ProcessTimer({MEASURE})
     @Override
     public void generator() throws Exception {
         System.out.println("generator");

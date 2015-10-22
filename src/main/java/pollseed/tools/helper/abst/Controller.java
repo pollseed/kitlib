@@ -1,10 +1,13 @@
-package main.controller;
+package pollseed.tools.helper.abst;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
-import main.controller.Action.PreAction;
-import main.controller.Action.ProcessTimer.Type;
+import pollseed.tools.helper.interfaces.Action;
+import pollseed.tools.helper.interfaces.Action.PreAction;
+import pollseed.tools.helper.interfaces.Action.ProcessTimer.Type;
+
+import static pollseed.tools.helper.interfaces.Action.ProcessTimer.Type.MEASURE;
 
 /**
  * 抽象コントローラクラス
@@ -13,10 +16,10 @@ public abstract class Controller implements Action, PreAction {
     private long __result = 0L;
 
     @Override
-    public final <T> void run(final PreAction preAct, final Class<T> claz) throws Exception {
-        before(claz);
+    public final <T> void run(final PreAction preAct, final Class<T> clazz) throws Exception {
+        before(clazz);
         preAct.generator();
-        after(claz);
+        after(clazz);
     }
 
     /**
@@ -24,12 +27,12 @@ public abstract class Controller implements Action, PreAction {
      */
     @Deprecated
     @Override
-    public final <T> void before(final Class<T> claz) throws Exception {
-        for (final Method method : claz.getDeclaredMethods()) {
+    public final <T> void before(final Class<T> clazz) throws Exception {
+        for (final Method method : clazz.getDeclaredMethods()) {
             for (final Annotation annotation : method.getDeclaredAnnotations()) {
                 if (annotation instanceof ProcessTimer) {
                     for (final Type type : ((ProcessTimer) annotation).value()) {
-                        if (Type.MEASURE == type) {
+                        if (MEASURE == type) {
                             System.out.println("before");
                             __result = System.currentTimeMillis();
                             // method.invoke(type);
@@ -46,12 +49,12 @@ public abstract class Controller implements Action, PreAction {
      */
     @Deprecated
     @Override
-    public final <T> void after(final Class<T> claz) {
-        for (final Method method : claz.getDeclaredMethods()) {
+    public final <T> void after(final Class<T> clazz) {
+        for (final Method method : clazz.getDeclaredMethods()) {
             for (final Annotation annotation : method.getDeclaredAnnotations()) {
                 if (annotation instanceof ProcessTimer) {
                     for (final Type type : ((ProcessTimer) annotation).value()) {
-                        if (Type.MEASURE == type) {
+                        if (MEASURE == type) {
                             System.out.println("after");
                             System.out.println(System.currentTimeMillis() - __result);
                             // method.invoke(null);

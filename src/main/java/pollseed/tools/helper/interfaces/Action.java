@@ -1,4 +1,4 @@
-package main.controller;
+package pollseed.tools.helper.interfaces;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -13,26 +13,23 @@ public interface Action {
     /**
      * メイン処理
      *
-     * @param preAct
-     *            {@link PreAction}
-     * @param claz
-     *            メイン処理を呼ぶ元クラス
-     * @throws Exception
-     *             例外時
+     * @param preAct {@link PreAction}
+     * @param clazz  メイン処理を呼ぶ元クラス
+     * @throws Exception 例外時
      */
-    <T> void run(PreAction preAct, Class<T> claz) throws Exception;
+    <T> void run(PreAction preAct, Class<T> clazz) throws Exception;
 
     /**
      * @deprecated
      */
     @Deprecated
-    <T> void before(Class<T> claz) throws Exception;
+    <T> void before(Class<T> clazz) throws Exception;
 
     /**
      * @deprecated
      */
     @Deprecated
-    <T> void after(Class<T> claz);
+    <T> void after(Class<T> clazz);
 
     /**
      * アクションを補佐するインタフェース
@@ -42,8 +39,7 @@ public interface Action {
         /**
          * 実装メソッド
          *
-         * @throws Exception
-         *             例外時
+         * @throws Exception 例外時
          */
         void generator() throws Exception;
 
