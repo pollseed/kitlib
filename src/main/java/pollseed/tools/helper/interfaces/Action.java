@@ -13,41 +13,49 @@ public interface Action {
     /**
      * メイン処理
      *
-     * @param preAct {@link PreAction}
-     * @param clazz  メイン処理を呼ぶ元クラス
-     * @throws Exception 例外時
+     * @param preAct
+     *            {@link Generator}
+     * @param claz
+     *            メイン処理を呼ぶ元クラス
+     * @throws Exception
+     *             例外時
      */
-    <T> void run(PreAction preAct, Class<T> clazz) throws Exception;
+    <T> void execute(Generator preAct, Class<T> claz) throws Exception;
+
+    // TODO 問題がなければ消す. *******
+    // /**
+    // * @deprecated
+    // */
+    // @Deprecated
+    // <T> void before(Class<T> claz) throws Exception;
+    // /**
+    // * @deprecated
+    // */
+    // @Deprecated
+    // <T> void after(Class<T> claz);
+    // *******
 
     /**
-     * @deprecated
+     * アクションを補佐するインタフェース<br>
+     * {@code intercepter} として {@code Annotation} を機能させるために {@link #generate()} を実装して下さい.
      */
-    @Deprecated
-    <T> void before(Class<T> clazz) throws Exception;
-
-    /**
-     * @deprecated
-     */
-    @Deprecated
-    <T> void after(Class<T> clazz);
-
-    /**
-     * アクションを補佐するインタフェース
-     */
-    interface PreAction {
+    interface Generator {
 
         /**
-         * 実装メソッド
+         * {@code Annotation} 処理の中に入り込む実装メソッド
          *
-         * @throws Exception 例外時
+         * @throws Exception
+         *             例外時
          */
-        void generator() throws Exception;
+        void generate() throws Exception;
 
     }
 
+    // TODO {@code Annotation} が増えてきたらヘッダファイルとして切り出す.
+
     /**
      * 時間計測用の {@code Annotation} <br>
-     * {@code MEASURE} を指定した {@link Action#run(PreAction, Class)} が呼ばれる度に時間計測をします.
+     * {@code MEASURE} を指定した {@link Action#execute(Generator, Class)} が呼ばれる度に時間計測をします.
      */
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.METHOD)
@@ -60,3 +68,4 @@ public interface Action {
     }
 
 }
+
