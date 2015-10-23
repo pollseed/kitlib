@@ -9,8 +9,7 @@ import pollseed.tools.helper.interfaces.AnnotationAction.ProcessTimer.Type;
 /**
  * {@code Annotation} 機能を呼び起こす抽象コントローラクラス.
  */
-public abstract class AnnotationController extends AnnotationExecuterHelperWrapper
-        implements AnnotationAction {
+public abstract class AnnotationController implements AnnotationAction {
 
     // FIXME refactoring => configファイルとして切り出す等
     private static long __result = 0L;
