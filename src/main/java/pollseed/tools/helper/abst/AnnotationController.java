@@ -13,6 +13,7 @@ public abstract class AnnotationController implements AnnotationAction {
 
     // FIXME refactoring => configファイルとして切り出す等
     private static long __result = 0L;
+    protected static int __repeatNumber = 0;
     protected final static Logger LOGGER;
     static {
         LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -26,8 +27,7 @@ public abstract class AnnotationController implements AnnotationAction {
     }
 
     @Override
-    public final <T> void execute(final AnnotationGenerator actionGenerator, final Class<T> clazz) {
-
+    public final <T> void execute(final AnnotationGenerator actionGenerator, final Class<T> clazz) throws Exception {
         try {
             beforeAnnotationExecute(clazz);
             actionGenerator.generate();
@@ -46,9 +46,9 @@ public abstract class AnnotationController implements AnnotationAction {
      *            継承元のクラス
      */
     private <T> void beforeAnnotationExecute(final Class<T> clazz) {
-        annotationExecuter(clazz, new AnnotationExecuterHelperWrapper() {
+        beforeAnnotationExecuter(clazz, new AnnotationExecuterHelperWrapper() {
             @Override
-            public void measureExecute() {
+            public void processTimerExecute() {
                 LOGGER.info("before");
                 __result = System.currentTimeMillis();
             }
@@ -63,9 +63,9 @@ public abstract class AnnotationController implements AnnotationAction {
      *            継承元のクラス
      */
     private <T> void afterAnnotationExecute(final Class<T> clazz) {
-        annotationExecuter(clazz, new AnnotationExecuterHelperWrapper() {
+        afterAnnotationExecuter(clazz, new AnnotationExecuterHelperWrapper() {
             @Override
-            public void measureExecute() {
+            public void processTimerExecute() {
                 LOGGER.info(Long.toString(System.currentTimeMillis() - __result));
                 LOGGER.info("after");
             }
@@ -80,41 +80,87 @@ public abstract class AnnotationController implements AnnotationAction {
      *            継承元のクラス
      * @param e
      *            例外クラス
+     * @throws Exception
+     *             例外発生時
      */
-    private <T> void errorAnnotationExecute(final Class<T> clazz, final Exception e) {
-        annotationExecuter(clazz, new AnnotationExecuterHelperWrapper() {
-        });
+    private <T> void errorAnnotationExecute(final Class<T> clazz, final Exception e) throws Exception {
+        errorAnnotationExecuter(clazz, new AnnotationExecuterHelperWrapper() {
+        }, e);
     }
 
     /**
-     * {@code Annotation} の実装を実行する役割を持ちます.
+     * 処理前に {@code Annotation} の実装を実行する役割を持ちます.
      *
      * @param clazz
      *            継承元のクラス
      * @param executerHelper
      *            {@link AnnotationExecuterHelperWrapper} 固有の処理を実装して下さい
      */
-    private <T> void annotationExecuter(
+    private <T> void beforeAnnotationExecuter(
             final Class<T> clazz,
             final AnnotationExecuterHelperWrapper executerHelper) {
         for (final Method method : clazz.getDeclaredMethods()) {
             for (final Annotation annotation : method.getDeclaredAnnotations()) {
-
-                /**
-                 * ************************************ <br>
-                 * 全ての {@code Annotation} 処理をここで実装して下さい <br>
-                 * ************************************
-                 */
-
                 if (annotation instanceof ProcessTimer) {
                     for (final Type type : ((ProcessTimer) annotation).value()) {
                         if (Type.MEASURE == type) {
-                            executerHelper.measureExecute();
+                            executerHelper.processTimerExecute();
                             return;
                         }
                     }
                 }
-
             }
         }
     }
+
+    /**
+     * 処理後に {@code Annotation} の実装を実行する役割を持ちます.
+     *
+     * @param clazz
+     *            継承元のクラス
+     * @param executerHelper
+     *            {@link AnnotationExecuterHelperWrapper} 固有の処理を実装して下さい
+     */
+    private <T> void afterAnnotationExecuter(
+            final Class<T> clazz,
+            final AnnotationExecuterHelperWrapper executerHelper) {
+        for (final Method method : clazz.getDeclaredMethods()) {
+            for (final Annotation annotation : method.getDeclaredAnnotations()) {
+                if (annotation instanceof ProcessTimer) {
+                    for (final Type type : ((ProcessTimer) annotation).value()) {
+                        if (Type.MEASURE == type) {
+                            executerHelper.processTimerExecute();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * エラー時に {@code Annotation} の実装を実行する役割を持ちます.
+     *
+     * @param clazz
+     *            継承元のクラス
+     * @param executerHelper
+     *            {@link AnnotationExecuterHelperWrapper} 固有の処理を実装して下さい
+     * @throws Exception
+     *             例外発生時
+     */
+    private <T> void errorAnnotationExecuter(
+            final Class<T> clazz,
+            final AnnotationExecuterHelperWrapper executerHelper, final Exception e) throws Exception {
+        for (final Method method : clazz.getDeclaredMethods()) {
+            for (final Annotation annotation : method.getDeclaredAnnotations()) {
+                if (e instanceof SilentException) {
+                    LOGGER.info(e.getMessage());
+                    return;
+                } else if (e instanceof SavageException) {
+                    throw e;
+                }
+                // TODO
+            }
+        }
+    }
+}
