@@ -13,16 +13,16 @@ public abstract class AnnotationController implements AnnotationAction {
 
     // FIXME refactoring => configファイルとして切り出す等
     private static long __result = 0L;
-    protected static Logger __logger;
+    protected final static Logger LOGGER;
     static {
-        __logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-        __logger.addHandler(new StreamHandler() {
+        LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+        LOGGER.addHandler(new StreamHandler() {
             {
                 setOutputStream(System.out);
             }
         });
-        __logger.setUseParentHandlers(false);
-        __logger.setLevel(Level.INFO);
+        LOGGER.setUseParentHandlers(false);
+        LOGGER.setLevel(Level.INFO);
     }
 
     @Override
@@ -31,9 +31,10 @@ public abstract class AnnotationController implements AnnotationAction {
         try {
             actionGenerator.generate();
         } catch (Exception e) {
-            errorAnnotationExecute(clazz);
+            errorAnnotationExecute(clazz, e);
+        } finally {
+            afterAnnotationExecute(clazz);
         }
-        afterAnnotationExecute(clazz);
     }
 
     /**
@@ -47,7 +48,7 @@ public abstract class AnnotationController implements AnnotationAction {
         annotationExecuter(clazz, new AnnotationExecuterHelperWrapper() {
             @Override
             public void measureExecute() {
-                __logger.info("before");
+                LOGGER.info("before");
                 __result = System.currentTimeMillis();
             }
         });
@@ -64,8 +65,8 @@ public abstract class AnnotationController implements AnnotationAction {
         annotationExecuter(clazz, new AnnotationExecuterHelperWrapper() {
             @Override
             public void measureExecute() {
-                __logger.info(Long.toString(System.currentTimeMillis() - __result));
-                __logger.info("after");
+                LOGGER.info(Long.toString(System.currentTimeMillis() - __result));
+                LOGGER.info("after");
             }
         });
     }
@@ -76,8 +77,10 @@ public abstract class AnnotationController implements AnnotationAction {
      *
      * @param clazz
      *            継承元のクラス
+     * @param e
+     *            例外クラス
      */
-    private <T> void errorAnnotationExecute(final Class<T> clazz) {
+    private <T> void errorAnnotationExecute(final Class<T> clazz, final Exception e) {
         annotationExecuter(clazz, new AnnotationExecuterHelperWrapper() {
         });
     }
@@ -114,4 +117,3 @@ public abstract class AnnotationController implements AnnotationAction {
             }
         }
     }
-}
