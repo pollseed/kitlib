@@ -6,9 +6,6 @@ import pollseed.tools.helper.interfaces.AnnotationAction.ProcessTimer.Type;
 import pollseed.tools.helper.interfaces.AnnotationAction.AnnotationGenerator;
 import pollseed.tools.helper.abst.AnnotationController;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 public class ControllerTest extends AnnotationController implements AnnotationGenerator {
 
     @Test
