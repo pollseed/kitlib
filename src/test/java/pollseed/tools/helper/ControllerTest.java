@@ -20,7 +20,7 @@ public class ControllerTest extends AnnotationController implements AnnotationGe
     @ProcessTimer({ Type.MEASURE })
     @Override
     public void generate() throws Exception {
-        System.out.println("generator");
+        __logger.info("generator");
         timer(new AnnotationGenerator() {
             @Override
             public void generate() {
@@ -44,9 +44,7 @@ public class ControllerTest extends AnnotationController implements AnnotationGe
         });
     }
 
-    private void timer(final AnnotationGenerator preAction) throws Exception {
-        execute(preAction, this.getClass());
+    private void timer(final AnnotationGenerator annotationGenerator) throws Exception {
+        execute(annotationGenerator, this.getClass());
     }
 }
-
-
