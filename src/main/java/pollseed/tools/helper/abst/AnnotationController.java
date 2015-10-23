@@ -5,6 +5,8 @@ import java.lang.reflect.Method;
 
 import pollseed.tools.helper.interfaces.AnnotationAction;
 import pollseed.tools.helper.interfaces.AnnotationAction.ProcessTimer.Type;
+import pollseed.tools.exception.SilentException;
+import pollseed.tools.exception.SavageException;
 
 /**
  * {@code Annotation} 機能を呼び起こす抽象コントローラクラス.
