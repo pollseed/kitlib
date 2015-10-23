@@ -10,26 +10,26 @@ import pollseed.tools.helper.interfaces.Action.ProcessTimer.Type;
 /**
  * 抽象コントローラクラス
  */
-public abstract class Controller implements Action {
+public abstract class AnnotationController implements AnnotationAction {
 
     // FIXME refactoring => configファイルとして切り出す等
     private long __result = 0L;
 
     @Override
-    public final <T> void execute(final Generator preAct, final Class<T> clazz) throws Exception {
-        before(clazz);
-        preAct.generate();
-        after(clazz);
+    public final <T> void execute(final AnnotationGenerator actionGenerator, final Class<T> clazz) throws Exception {
+        beforeAnnotationExecute(clazz);
+        actionGenerator.generate();
+        afterAnnotationExecute(clazz);
     }
 
     /**
-     * {@link #execute(Generator, Class)} が呼ばれる直前に実行される処理となります.<br>
+     * {@link #execute(AnnotationGenerator, Class)} が呼ばれる直前に実行される処理となります.<br>
      * ※コールバックの扱いにならないように実装して下さい.
      *
      * @param clazz
      *            継承元のクラス
      */
-    private <T> void before(final Class<T> clazz) {
+    private <T> void beforeAnnotationExecute(final Class<T> clazz) {
         annotationExecuter(clazz, new ExexuterHelper() {
             @Override
             public void measureExecute() {
@@ -40,13 +40,13 @@ public abstract class Controller implements Action {
     }
 
     /**
-     * {@link #execute(Generator, Class)} が呼ばれた直後に実行される処理となります.<br>
+     * {@link #execute(AnnotationGenerator, Class)} が呼ばれた直後に実行される処理となります.<br>
      * ※コールバックの扱いにならないように実装して下さい.
      *
      * @param clazz
      *            継承元のクラス
      */
-    private <T> void after(final Class<T> clazz) {
+    private <T> void afterAnnotationExecute(final Class<T> clazz) {
         annotationExecuter(clazz, new ExexuterHelper() {
             @Override
             public void measureExecute() {
@@ -88,7 +88,7 @@ public abstract class Controller implements Action {
     }
 
     /**
-     * {@link Controller#annotationExecuter(Class, ExexuterHelper)}
+     * {@link AnnotationController#annotationExecuter(Class, ExexuterHelper)}
      * 実行時の処理を分岐させたい場合にこちらにルールを追加してください.
      *
      */
