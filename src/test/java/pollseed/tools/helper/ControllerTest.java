@@ -2,34 +2,34 @@ package pollseed.tools.helper;
 
 import org.junit.Assert;
 import org.junit.Test;
-import pollseed.tools.helper.interfaces.Action.ProcessTimer.Type;
-import pollseed.tools.helper.interfaces.Action.Generator;
-import pollseed.tools.helper.abst.Controller;
+import pollseed.tools.helper.interfaces.AnnotationAction.ProcessTimer.Type;
+import pollseed.tools.helper.interfaces.AnnotationAction.AnnotationGenerator;
+import pollseed.tools.helper.abst.AnnotationController;
 
-public class ControllerTest extends Controller implements Generator {
+public class TestController extends AnnotationController implements AnnotationGenerator {
     public static void main(final String[] args) throws Exception {
-        new ControllerTest().generate();
+        new TestController().generate();
     }
 
     @ProcessTimer({ Type.MEASURE })
     @Override
     public void generate() throws Exception {
         System.out.println("generator");
-        timer(new Generator() {
+        timer(new AnnotationGenerator() {
             @Override
             public void generate() {
                 for (int i = 0; i < 1000000; i++)
                     Long.parseLong("1");
             }
         });
-        timer(new Generator() {
+        timer(new AnnotationGenerator() {
             @Override
             public void generate() {
                 for (int i = 0; i < 1000000; i++)
                     new Long("1");
             }
         });
-        timer(new Generator() {
+        timer(new AnnotationGenerator() {
             @Override
             public void generate() {
                 for (int i = 0; i < 1000000; i++)
@@ -38,7 +38,8 @@ public class ControllerTest extends Controller implements Generator {
         });
     }
 
-    private void timer(final Generator preAction) throws Exception {
+    private void timer(final AnnotationGenerator preAction) throws Exception {
         execute(preAction, this.getClass());
     }
 }
+
