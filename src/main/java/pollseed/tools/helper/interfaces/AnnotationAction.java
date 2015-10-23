@@ -6,21 +6,21 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * アクションインタフェース
+ * {@code Annotation} 機能を呼び起こすインタフェース.
  */
-public interface Action {
+public interface AnnotationAction {
 
     /**
      * メイン処理
      *
-     * @param preAct
-     *            {@link Generator}
-     * @param claz
+     * @param actionGenerator
+     *            {@link AnnotationGenerator}
+     * @param clazz
      *            メイン処理を呼ぶ元クラス
      * @throws Exception
      *             例外時
      */
-    <T> void execute(Generator preAct, Class<T> claz) throws Exception;
+    <T> void execute(AnnotationGenerator actionGenerator, Class<T> clazz) throws Exception;
 
     // TODO 問題がなければ消す. *******
     // /**
@@ -36,10 +36,10 @@ public interface Action {
     // *******
 
     /**
-     * アクションを補佐するインタフェース<br>
+     * {@code AnnotationAction} を補佐するインタフェース<br>
      * {@code intercepter} として {@code Annotation} を機能させるために {@link #generate()} を実装して下さい.
      */
-    interface Generator {
+    interface AnnotationGenerator {
 
         /**
          * {@code Annotation} 処理の中に入り込む実装メソッド
@@ -55,7 +55,8 @@ public interface Action {
 
     /**
      * 時間計測用の {@code Annotation} <br>
-     * {@code MEASURE} を指定した {@link Action#execute(Generator, Class)} が呼ばれる度に時間計測をします.
+     * {@code MEASURE} を指定した {@link AnnotationAction#execute(AnnotationGenerator, Class)}
+     * が呼ばれる度に時間計測をします.
      */
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.METHOD)
