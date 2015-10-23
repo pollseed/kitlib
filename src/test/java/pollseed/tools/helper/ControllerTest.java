@@ -5,6 +5,7 @@ import org.junit.Test;
 import pollseed.tools.helper.interfaces.AnnotationAction.ProcessTimer.Type;
 import pollseed.tools.helper.interfaces.AnnotationAction.AnnotationGenerator;
 import pollseed.tools.helper.abst.AnnotationController;
+import pollseed.tools.exception.SilentException;
 
 public class ControllerTest extends AnnotationController implements AnnotationGenerator {
 
@@ -17,7 +18,7 @@ public class ControllerTest extends AnnotationController implements AnnotationGe
     @ProcessTimer({ Type.MEASURE })
     @Override
     public void generate() throws Exception {
-        __logger.info("generator");
+        LOGGER.info("generator");
         timer(new AnnotationGenerator() {
             @Override
             public void generate() {
@@ -27,9 +28,17 @@ public class ControllerTest extends AnnotationController implements AnnotationGe
         });
         timer(new AnnotationGenerator() {
             @Override
-            public void generate() {
-                for (int i = 0; i < 1000000; i++)
-                    new Long("1");
+            public void generate() throws SilentException {
+                for (int i = 0; i < 1000000; i++) {
+                    try {
+                        new Long("1");
+                        if (i == 900000) {
+                            new Long("hoge");
+                        }
+                    } catch (NumberFormatException e) {
+                        throw new SilentException("hoge");
+                    }
+                }
             }
         });
         timer(new AnnotationGenerator() {
