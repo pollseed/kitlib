@@ -3,8 +3,8 @@ package pollseed.tools.helper.abst;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
-import pollseed.tools.helper.interfaces.Action;
-import pollseed.tools.helper.interfaces.Action.ProcessTimer.Type;
+import pollseed.tools.helper.interfaces.AnnotationAction;
+import pollseed.tools.helper.interfaces.AnnotationAction.ProcessTimer.Type;
 
 
 /**
