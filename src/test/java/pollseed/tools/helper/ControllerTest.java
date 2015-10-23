@@ -2,46 +2,43 @@ package pollseed.tools.helper;
 
 import org.junit.Assert;
 import org.junit.Test;
+import pollseed.tools.helper.interfaces.Action.ProcessTimer.Type;
+import pollseed.tools.helper.interfaces.Action.Generator;
 import pollseed.tools.helper.abst.Controller;
 
-import static pollseed.tools.helper.interfaces.Action.ProcessTimer.Type.MEASURE;
-
-public class ControllerTest extends Controller {
-
-    @Test
-    public void test_generator() throws Exception {
-        new ControllerTest().generator();
-        Assert.assertTrue(true);
+public class ControllerTest extends Controller implements Generator {
+    public static void main(final String[] args) throws Exception {
+        new ControllerTest().generate();
     }
 
-    @ProcessTimer({MEASURE})
+    @ProcessTimer({ Type.MEASURE })
     @Override
-    public void generator() throws Exception {
+    public void generate() throws Exception {
         System.out.println("generator");
-        timer(new PreAction() {
+        timer(new Generator() {
             @Override
-            public void generator() {
+            public void generate() {
                 for (int i = 0; i < 1000000; i++)
                     Long.parseLong("1");
             }
         });
-        timer(new PreAction() {
+        timer(new Generator() {
             @Override
-            public void generator() {
+            public void generate() {
                 for (int i = 0; i < 1000000; i++)
                     new Long("1");
             }
         });
-        timer(new PreAction() {
+        timer(new Generator() {
             @Override
-            public void generator() {
+            public void generate() {
                 for (int i = 0; i < 1000000; i++)
                     Long.valueOf("1");
             }
         });
     }
 
-    private void timer(final PreAction preAction) throws Exception {
-        run(preAction, this.getClass());
+    private void timer(final Generator preAction) throws Exception {
+        execute(preAction, this.getClass());
     }
 }
