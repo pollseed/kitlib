@@ -6,14 +6,24 @@ import java.lang.reflect.Method;
 import pollseed.tools.helper.interfaces.AnnotationAction;
 import pollseed.tools.helper.interfaces.AnnotationAction.ProcessTimer.Type;
 
-
 /**
- * 抽象コントローラクラス
+ * {@code Annotation} 機能を呼び起こす抽象コントローラクラス.
  */
 public abstract class AnnotationController implements AnnotationAction {
 
     // FIXME refactoring => configファイルとして切り出す等
-    private long __result = 0L;
+    private static long __result = 0L;
+    protected static Logger __logger;
+    static {
+        __logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+        __logger.addHandler(new StreamHandler() {
+            {
+                setOutputStream(System.out);
+            }
+        });
+        __logger.setUseParentHandlers(false);
+        __logger.setLevel(Level.INFO);
+    }
 
     @Override
     public final <T> void execute(final AnnotationGenerator actionGenerator, final Class<T> clazz) throws Exception {
@@ -33,7 +43,7 @@ public abstract class AnnotationController implements AnnotationAction {
         annotationExecuter(clazz, new ExexuterHelper() {
             @Override
             public void measureExecute() {
-                System.out.println("before");
+                __logger.info("before");
                 __result = System.currentTimeMillis();
             }
         });
@@ -50,8 +60,8 @@ public abstract class AnnotationController implements AnnotationAction {
         annotationExecuter(clazz, new ExexuterHelper() {
             @Override
             public void measureExecute() {
-                System.out.println("after");
-                System.out.println(System.currentTimeMillis() - __result);
+                __logger.info(Long.toString(System.currentTimeMillis() - __result));
+                __logger.info("after");
             }
         });
     }
@@ -67,22 +77,22 @@ public abstract class AnnotationController implements AnnotationAction {
     private <T> void annotationExecuter(final Class<T> clazz, final ExexuterHelper executerHelper) {
         for (final Method method : clazz.getDeclaredMethods()) {
             for (final Annotation annotation : method.getDeclaredAnnotations()) {
+
+                /**
+                 * ************************************ <br>
+                 * 全ての {@code Annotation} 処理をここで実装して下さい <br>
+                 * ************************************
+                 */
+
                 if (annotation instanceof ProcessTimer) {
                     for (final Type type : ((ProcessTimer) annotation).value()) {
-
-                        /**
-                         * ************************************ <br>
-                         * 全ての {@code Annotation} 処理をここで実装して下さい <br>
-                         * ************************************
-                         */
-
                         if (Type.MEASURE == type) {
                             executerHelper.measureExecute();
                             return;
                         }
-
                     }
                 }
+
             }
         }
     }
