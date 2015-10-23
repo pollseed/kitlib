@@ -6,9 +6,15 @@ import pollseed.tools.helper.interfaces.AnnotationAction.ProcessTimer.Type;
 import pollseed.tools.helper.interfaces.AnnotationAction.AnnotationGenerator;
 import pollseed.tools.helper.abst.AnnotationController;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 public class ControllerTest extends AnnotationController implements AnnotationGenerator {
-    public static void main(final String[] args) throws Exception {
-        new TestController().generate();
+
+    @Test
+    public void test_processTimer() throws Exception {
+        generate();
+        Assert.assertTrue(true);
     }
 
     @ProcessTimer({ Type.MEASURE })
@@ -42,4 +48,5 @@ public class ControllerTest extends AnnotationController implements AnnotationGe
         execute(preAction, this.getClass());
     }
 }
+
 
