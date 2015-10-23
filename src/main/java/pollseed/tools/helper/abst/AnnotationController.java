@@ -27,8 +27,9 @@ public abstract class AnnotationController implements AnnotationAction {
 
     @Override
     public final <T> void execute(final AnnotationGenerator actionGenerator, final Class<T> clazz) {
-        beforeAnnotationExecute(clazz);
+
         try {
+            beforeAnnotationExecute(clazz);
             actionGenerator.generate();
         } catch (Exception e) {
             errorAnnotationExecute(clazz, e);
