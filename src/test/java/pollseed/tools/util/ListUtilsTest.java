@@ -114,6 +114,7 @@ public class ListUtilsTest {
         }
     }
 
+    @SuppressWarnings("serial")
     @Test
     public void test_sort() {
         final String[] AnswerNames = new String[] { "kaki", "あさがお", "ぁさがお", "アサガオ", "ァサガオ", "おおかみ", "かき", "カキ", "がき", "ガキ", "さがわけん", "バイク", "ん" };
