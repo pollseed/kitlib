@@ -4,7 +4,7 @@ import pollseed.tools.helper.interfaces.AnnotationAction.ProcessTimer;
 
 /**
  * {@link #AnnotationExecuterHelper()} のラッパークラスとなります.<br>
- * {@link #AnnotationExecuterHelper()}を実装せず、このクラスを継承して下さい.<br>
+ * {@link #AnnotationExecuterHelper()}を実装せず、このクラスを使用して下さい.<br>
  */
 public abstract class AnnotationExecuterHelperWrapper implements AnnotationExecuterHelper {
     @Override
