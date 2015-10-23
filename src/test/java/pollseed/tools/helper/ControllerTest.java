@@ -15,7 +15,7 @@ public class ControllerTest extends AnnotationController implements AnnotationGe
         Assert.assertTrue(true);
     }
 
-    @ProcessTimer({ Type.MEASURE })
+    @ProcessTimer({Type.MEASURE})
     @Override
     public void generate() throws Exception {
         LOGGER.info("generator");

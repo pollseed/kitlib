@@ -13,27 +13,11 @@ public interface AnnotationAction {
     /**
      * メイン処理
      *
-     * @param actionGenerator
-     *            {@link AnnotationGenerator}
-     * @param clazz
-     *            メイン処理を呼ぶ元クラス
-     * @throws Exception
-     *             例外時
+     * @param actionGenerator {@link AnnotationGenerator}
+     * @param clazz           メイン処理を呼ぶ元クラス
+     * @throws Exception 例外時
      */
     <T> void execute(AnnotationGenerator actionGenerator, Class<T> clazz) throws Exception;
-
-    // TODO 問題がなければ消す. *******
-    // /**
-    // * @deprecated
-    // */
-    // @Deprecated
-    // <T> void before(Class<T> claz) throws Exception;
-    // /**
-    // * @deprecated
-    // */
-    // @Deprecated
-    // <T> void after(Class<T> claz);
-    // *******
 
     /**
      * {@code AnnotationAction} を補佐するインタフェース<br>
@@ -44,8 +28,7 @@ public interface AnnotationAction {
         /**
          * {@code Annotation} 処理の中に入り込む実装メソッド
          *
-         * @throws Exception
-         *             例外時
+         * @throws Exception 例外時
          */
         void generate() throws Exception;
 
