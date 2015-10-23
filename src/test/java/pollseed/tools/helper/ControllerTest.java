@@ -6,7 +6,7 @@ import pollseed.tools.helper.interfaces.AnnotationAction.ProcessTimer.Type;
 import pollseed.tools.helper.interfaces.AnnotationAction.AnnotationGenerator;
 import pollseed.tools.helper.abst.AnnotationController;
 
-public class TestController extends AnnotationController implements AnnotationGenerator {
+public class ControllerTest extends AnnotationController implements AnnotationGenerator {
     public static void main(final String[] args) throws Exception {
         new TestController().generate();
     }
