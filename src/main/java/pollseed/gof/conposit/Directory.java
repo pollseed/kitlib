@@ -12,29 +12,25 @@ public class Directory extends Root {
     }
 
     private void addDirectory(final Collection<Root> collection) {
-        for (final Root order : collection) {
-            addDirectory(order);
-        }
+        collection.forEach(c -> addDirectory(c));
     }
 
     private final List<Root> directories = new ArrayList<Root>();
 
     @Override
-    public void addDirectory(final Root order) {
-        directories.add(order);
+    public void addDirectory(final Root directory) {
+        directories.add(directory);
     }
 
     @Override
     public String getName() {
         final StringBuilder result = new StringBuilder();
-        int i = 0;
-        for (final Root directory : directories) {
-            if (i != 0) {
+        directories.forEach(directory -> {
+            if (result.length() != 0) {
                 result.append(":");
             }
             result.append(directory.getName());
-            i++;
-        }
+        });
         return result.toString();
     }
 
