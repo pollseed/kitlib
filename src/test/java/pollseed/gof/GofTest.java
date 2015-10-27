@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import pollseed.gof.conposit.Directory;
 import pollseed.gof.conposit.File;
-import pollseed.gof.conposit.abst.AbstractMain;
 import pollseed.gof.conposit.abst.Root;
 
 public class GofTest extends AbstractMain {
