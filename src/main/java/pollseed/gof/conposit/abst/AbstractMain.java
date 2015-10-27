@@ -1,4 +1,4 @@
-package src.main.abst;
+package pollseed.gof.conposit.abst;
 
 import org.junit.Assert;
 

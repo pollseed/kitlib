@@ -1,10 +1,10 @@
-package src.main.conposit;
+package pollseed.gof.conposit;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import src.main.abst.Root;
+import pollseed.gof.conposit.abst.Root;
 
 public class Directory extends Root {
     public Directory(final Collection<Root> collection) {

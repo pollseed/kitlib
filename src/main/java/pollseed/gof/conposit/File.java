@@ -1,6 +1,6 @@
-package src.main.conposit;
+package pollseed.gof.conposit;
 
-import src.main.abst.Root;
+import pollseed.gof.conposit.abst.Root;
 
 public class File extends Root {
     private final String name;
