@@ -6,21 +6,21 @@
 [![Apache LISENCE](https://img.shields.io/badge/lisence-Apache%202.0-yellowgreen.svg)](https://github.com/pollseed/kitlib/blob/master/LISENCE)
 [![Coverage Status](https://coveralls.io/repos/pollseed/kitlib/badge.svg?branch=master)](https://coveralls.io/r/pollseed/kitlib?branch=master)
 
-##Environment
-* java 1.8.0_31 推奨
+## Environment
+* java 1.8.0_45 推奨
 * gradle 2.2.1
 
-##Summary
+## Summary
 'kitlib' is Kit's Library, Java Auxiliary Library
 
-##Getting Started
+## Getting Started
 
 ```
 $ gradle build
 $ gradle eclipse # eclipseのビルドパスを通す
 ```
 
-##Dependencies
+## Dependencies
 
 * org.apache.commons:commons-lang3:3.3.2
 * commons-io:commons-io:2.4
@@ -29,7 +29,7 @@ $ gradle eclipse # eclipseのビルドパスを通す
 * org.hamcrest, name: 'hamcrest-library', version: '1.3'
 * org.mockito, name: 'mockito-core', version: '1.9.+'
 
-##Extension
+## Extension
 
 1. Please make 'Class name + Test' class in 'src/test/java/pollseed/tools/helper', write test code to the file.
 2. Please run the following command.
@@ -38,7 +38,7 @@ $ gradle eclipse # eclipseのビルドパスを通す
 $ gradle test
 ```
 
-##Directory Structure
+## Directory Structure
 
 ```
 .
@@ -68,20 +68,20 @@ $ gradle test
                     └── util
 ```
 
-##Domain
+## Domain
 src/main/java/pollseed
 
-###tools
+### tools
 Auxiliary source that will be called.
 
-####helper
+#### helper
 * Collection of instance functions.
 * Or a local feature, many processes, such as run out creating an instance.
 
-####util
+#### util
 * Collection of static functions.
 * A high degree of influence on the frequency-range both to be used.
 
-##[Wiki](https://github.com/pollseed/kitlib/wiki)
-####[Release Tags Rule](https://github.com/pollseed/kitlib/wiki/Release)
+## [Wiki](https://github.com/pollseed/kitlib/wiki)
+#### [Release Tags Rule](https://github.com/pollseed/kitlib/wiki/Release)
 release tags rule
