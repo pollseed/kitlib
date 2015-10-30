@@ -26,4 +26,12 @@ public class GofTest extends AbstractMain {
         eq(directory.getName(), "hoge:hoge1:hoge2:hoge3:hoge4");
         eq(directory.getSize(), 5);
     }
+
+    
+    
+    @Test
+    public void test_singletom_pattern() {
+        final MathClient client = MathFactory.getInstance();
+        eq(client.multiply(10, 2), 100);
+    }
 }
