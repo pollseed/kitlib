@@ -2,6 +2,7 @@ package pollseed.tools.helper.abst;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.StreamHandler;
@@ -102,18 +103,16 @@ public abstract class AnnotationController implements AnnotationAction {
      *            {@link AnnotationExecuterHelperWrapper} 固有の処理を実装して下さい
      */
     private <T> void beforeAnnotationExecuter(final Class<T> clazz, final AnnotationExecuterHelperWrapper executerHelper) {
-        for (final Method method : clazz.getDeclaredMethods()) {
-            for (final Annotation annotation : method.getDeclaredAnnotations()) {
+        Arrays.stream(clazz.getDeclaredMethods()).forEach(method -> {
+            Arrays.stream(method.getDeclaredAnnotations()).forEach(annotation -> {
                 if (annotation instanceof ProcessTimer) {
-                    for (final Type type : ((ProcessTimer) annotation).value()) {
-                        if (Type.MEASURE == type) {
-                            executerHelper.processTimerExecute();
-                            return;
-                        }
-                    }
+                    Arrays.stream(((ProcessTimer) annotation).value()).filter(type -> type == Type.MEASURE).forEach(x -> {
+                        executerHelper.processTimerExecute();
+                        return;
+                    });
                 }
-            }
-        }
+            });
+        });
     }
 
     /**
@@ -125,18 +124,16 @@ public abstract class AnnotationController implements AnnotationAction {
      *            {@link AnnotationExecuterHelperWrapper} 固有の処理を実装して下さい
      */
     private <T> void afterAnnotationExecuter(final Class<T> clazz, final AnnotationExecuterHelperWrapper executerHelper) {
-        for (final Method method : clazz.getDeclaredMethods()) {
-            for (final Annotation annotation : method.getDeclaredAnnotations()) {
+        Arrays.stream(clazz.getDeclaredMethods()).forEach(method -> {
+            Arrays.stream(method.getDeclaredAnnotations()).forEach(annotation -> {
                 if (annotation instanceof ProcessTimer) {
-                    for (final Type type : ((ProcessTimer) annotation).value()) {
-                        if (Type.MEASURE == type) {
-                            executerHelper.processTimerExecute();
-                            return;
-                        }
-                    }
+                    Arrays.stream(((ProcessTimer) annotation).value()).filter(type -> type == Type.MEASURE).forEach(x -> {
+                        executerHelper.processTimerExecute();
+                        return;
+                    });
                 }
-            }
-        }
+            });
+        });
     }
 
     /**

@@ -8,6 +8,8 @@ import org.junit.Test;
 import pollseed.gof.conposit.Directory;
 import pollseed.gof.conposit.File;
 import pollseed.gof.conposit.abst.Root;
+import pollseed.gof.singleton.MathFactory;
+import pollseed.gof.singleton.interfaces.MathClient;
 
 public class GofTest extends AbstractMain {
 
@@ -27,8 +29,6 @@ public class GofTest extends AbstractMain {
         eq(directory.getSize(), 5);
     }
 
-    
-    
     @Test
     public void test_singletom_pattern() {
         final MathClient client = MathFactory.getInstance();
