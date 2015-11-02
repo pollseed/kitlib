@@ -1,4 +1,6 @@
-package src.main.bridge;
+package pollseed.gof.bridge;
+
+import pollseed.gof.bridge.abst.AbstractBridge;
 
 public class BridgeImplB extends AbstractBridge {
     @Override

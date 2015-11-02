@@ -25,11 +25,11 @@ public class Directory extends Root {
     @Override
     public String getName() {
         final StringBuilder result = new StringBuilder();
-        directories.forEach(directory -> {
+        directories.forEach(file -> {
             if (result.length() != 0) {
                 result.append(":");
             }
-            result.append(directory.getName());
+            result.append(file.getName());
         });
         return result.toString();
     }

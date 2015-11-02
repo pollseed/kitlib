@@ -1,5 +1,5 @@
-package src.main.adaptor;
+package pollseed.gof.adaptor.abst;
 
 public abstract class AbstractAdaptor {
-    abstract int execute();
+    public abstract int execute();
 }
