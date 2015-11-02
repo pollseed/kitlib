@@ -11,7 +11,8 @@
 * gradle 2.2.1
 
 ## Summary
-'kitlib' is Kit's Library, Java Auxiliary Library
+* 'kitlib' is Kit's Library, Java Auxiliary Library
+* for'Hackathon' [here](https://github.com/pollseed/kitlib/tree/master/src/main/java/pollseed/gof)
 
 ## Getting Started
 
