@@ -34,4 +34,22 @@ public class GofTest extends AbstractMain {
         final MathClient client = MathFactory.getInstance();
         eq(client.multiply(10, 2), 100);
     }
+    
+    @Test
+    public void test_adaptor_pattern() {
+        final IntrAdaptor adaptor_intr = new Adaptor_Interface_pattern();
+        eq(adaptor_intr.execute(), 1);
+        final Adaptor_Abstract_pattern adaptor_abst = new Adaptor_Abstract_pattern();
+        eq(adaptor_abst.execute(), 1);
+    }
+
+    @Test
+    public void bridge_pattern() {
+        final AbstractBridge abstractBridgeA = new Bridge(new BridgeImplA());
+        eq(abstractBridgeA.execute(), "execute BridgeImplA");
+        final AbstractBridge abstractBridgeB = new Bridge(new BridgeImplB());
+        eq(abstractBridgeB.execute(), "execute BridgeImplB");
+        final Bridge bridge = new Bridge();
+        eq(bridge.executeBridge(), "execute Bridge");
+    }
 }
