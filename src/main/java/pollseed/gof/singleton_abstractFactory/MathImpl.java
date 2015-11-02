@@ -1,6 +1,6 @@
-package pollseed.gof.singleton;
+package pollseed.gof.singleton_abstractFactory;
 
-import pollseed.gof.singleton.interfaces.MathClient;
+import pollseed.gof.singleton_abstractFactory.interfaces.MathClient;
 
 public class MathImpl implements MathClient {
 

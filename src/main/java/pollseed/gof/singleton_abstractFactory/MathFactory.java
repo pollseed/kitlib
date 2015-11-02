@@ -1,8 +1,8 @@
-package pollseed.gof.singleton;
+package pollseed.gof.singleton_abstractFactory;
 
 import java.io.Serializable;
 
-import pollseed.gof.singleton.interfaces.MathClient;
+import pollseed.gof.singleton_abstractFactory.interfaces.MathClient;
 
 public class MathFactory implements Serializable {
     private static final long serialVersionUID = 1L;

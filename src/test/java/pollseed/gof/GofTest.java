@@ -17,9 +17,9 @@ import pollseed.gof.bridge.abst.AbstractBridge;
 import pollseed.gof.conposit.Directory;
 import pollseed.gof.conposit.File;
 import pollseed.gof.conposit.abst.Root;
-import pollseed.gof.singleton.MathFactory;
-import pollseed.gof.singleton.MathImpl;
-import pollseed.gof.singleton.interfaces.MathClient;
+import pollseed.gof.singleton_abstractFactory.MathFactory;
+import pollseed.gof.singleton_abstractFactory.MathImpl;
+import pollseed.gof.singleton_abstractFactory.interfaces.MathClient;
 
 /**
  * LT用のGoFサンプルクラス.
