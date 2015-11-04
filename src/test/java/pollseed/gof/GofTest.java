@@ -133,6 +133,13 @@ public class GofTest extends AbstractMain {
         eq(bridge.executeBridge(), "execute Bridge");
     }
 
+    /**
+     * <b>[State]</b></br> 状態を表すデザパタ<br>
+     * 与えられたインタフェースを決められた規則で決まったタイミングでメソッドを使うが、状態によって中身を変えたい時によく使う.<br>
+     * この場合{@link UserLogger}と{@link ServerLogger}は同じように使われるが処理内容が異なってくる.<br>
+     * このデザパタが使われるタイミングや予兆としてはif文で処理を引数で分けている時などがわかりやすい。{@link LoggerImpl}
+     * がその分岐を代わりにやってくれる.
+     */
     @Test
     public void state_pattern() {
         final Logger userLogger = new LoggerImpl(new UserLogger());
@@ -145,6 +152,12 @@ public class GofTest extends AbstractMain {
         eq(serverLogger.error(), "server error >");
     }
 
+    /**
+     * <b>[Visitor]</b></br> 訪問者を意味するVisitor側で処理を賄う.<br>
+     * Acceptorオブジェクトは{@code accept}メソッドが必要.<br>
+     * 処理の流れとしては、{@link Visitor}が{@link Acceptor}継承のクラスによって処理される.<br>
+     * 実際の処理はVisitorImple1,2に書かれている.
+     */
     @Test
     public void visitor_pattern() {
         Visitor v1 = new VisitorImpl1();
