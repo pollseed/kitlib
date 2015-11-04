@@ -122,4 +122,15 @@ public class GofTest extends AbstractMain {
         final Bridge bridge = new Bridge();
         eq(bridge.executeBridge(), "execute Bridge");
     }
+    
+    
+    @Test
+    public void state_pattern() {
+        JobState swrdsMan = new Command(new SwordsMan());
+        JobState magician = new Command(new Magician());
+        eq(swrdsMan.attack(), "斬り");
+        eq(magician.attack(), "ファイア");
+        eq(swrdsMan.deathblow(), "雷鳴斬");
+        eq(magician.deathblow(), "灼熱の炎");
+    }
 }
