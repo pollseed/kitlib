@@ -1,13 +1,15 @@
-package src.main.visitor;
+package pollseed.gof.visitor;
+
+import pollseed.gof.visitor.abst.Visitor;
 
 public class VisitorImpl1 extends Visitor {
     @Override
-    String visit(AcceptImpl1 acceptImpl1) {
+    public String visit(AcceptImpl1 acceptImpl1) {
         return "VisitorImpl1 ok 1";
     }
 
     @Override
-    String visit(AcceptImpl2 acceptImpl1) {
+    public String visit(AcceptImpl2 acceptImpl1) {
         return "VisitorImpl1 ok 2";
     }
 }

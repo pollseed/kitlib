@@ -1,4 +1,6 @@
-package src.main.state;
+package pollseed.gof.state;
+
+import pollseed.gof.state.interfaces.Logger;
 
 public class LoggerImpl implements Logger {
     private Logger logger;

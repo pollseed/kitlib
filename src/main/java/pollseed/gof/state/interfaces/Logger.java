@@ -1,4 +1,4 @@
-package src.main.state;
+package pollseed.gof.state.interfaces;
 
 /**
  * ログ出力のためのインタフェース.

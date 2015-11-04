@@ -1,4 +1,7 @@
-package src.main.visitor;
+package pollseed.gof.visitor;
+
+import pollseed.gof.visitor.abst.Acceptor;
+import pollseed.gof.visitor.abst.Visitor;
 
 public class AcceptImpl1 extends Acceptor {
     @Override

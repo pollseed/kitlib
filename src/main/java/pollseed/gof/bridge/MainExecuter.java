@@ -1,4 +1,6 @@
-package src.main;
+package pollseed.gof.bridge;
+
+import pollseed.gof.bridge.interfaces.Compartment;
 
 public class MainExecuter implements Compartment {
     private Compartment c;

@@ -1,8 +1,11 @@
-package src.main;
+package pollseed.gof.bridge.abst;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.StreamHandler;
+
+import pollseed.gof.bridge.interfaces.Compartment;
 
 public abstract class LoggerWrapper implements Compartment {
     protected final static Logger LOGGER;
@@ -23,13 +26,11 @@ public abstract class LoggerWrapper implements Compartment {
         LOGGER.info(obj.toString());
     }
 
-    protected void info(final Object... objs) {
-        if (objs == null || objs.length == 0)
+    protected void info(final List<Object> objs) {
+        if (objs == null || objs.isEmpty())
             return;
-        for (Object obj : objs) {
-            if (obj == null)
-                continue;
-            LOGGER.info(obj.toString());
-        }
+        objs.stream().filter(s -> s != null).forEach(v -> {
+            LOGGER.info(v.toString());
+        });
     }
 }

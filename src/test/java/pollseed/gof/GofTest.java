@@ -20,6 +20,16 @@ import pollseed.gof.conposit.abst.Root;
 import pollseed.gof.singleton_abstractFactory.MathFactory;
 import pollseed.gof.singleton_abstractFactory.MathImpl;
 import pollseed.gof.singleton_abstractFactory.interfaces.MathClient;
+import pollseed.gof.state.LoggerImpl;
+import pollseed.gof.state.ServerLogger;
+import pollseed.gof.state.UserLogger;
+import pollseed.gof.state.interfaces.Logger;
+import pollseed.gof.visitor.AcceptImpl1;
+import pollseed.gof.visitor.AcceptImpl2;
+import pollseed.gof.visitor.VisitorImpl1;
+import pollseed.gof.visitor.VisitorImpl2;
+import pollseed.gof.visitor.abst.Acceptor;
+import pollseed.gof.visitor.abst.Visitor;
 
 /**
  * LT用のGoFサンプルクラス.
@@ -122,7 +132,7 @@ public class GofTest extends AbstractMain {
         final Bridge bridge = new Bridge();
         eq(bridge.executeBridge(), "execute Bridge");
     }
-    
+
     @Test
     public void state_pattern() {
         final Logger userLogger = new LoggerImpl(new UserLogger());
@@ -134,7 +144,7 @@ public class GofTest extends AbstractMain {
         eq(serverLogger.warn(), "server warn >");
         eq(serverLogger.error(), "server error >");
     }
-    
+
     @Test
     public void visitor_pattern() {
         Visitor v1 = new VisitorImpl1();

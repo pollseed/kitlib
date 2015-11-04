@@ -1,4 +1,6 @@
-package src.main;
+package pollseed.gof.bridge;
+
+import pollseed.gof.bridge.abst.LoggerWrapper;
 
 // 既存では、Compartmentを実装していたが、その間に処理をはさみたいとき
 // ex.) 使う時
