@@ -133,4 +133,17 @@ public class GofTest extends AbstractMain {
         eq(swrdsMan.deathblow(), "雷鳴斬");
         eq(magician.deathblow(), "灼熱の炎");
     }
+    
+    
+    @Test
+    public void visitor_pattern() {
+        Visitor v1 = new VisitorImpl1();
+        Visitor v2 = new VisitorImpl2();
+        Acceptor a1 = new AcceptImpl1();
+        Acceptor a2 = new AcceptImpl2();
+        eq(a1.accept(v1), "VisitorImpl1 ok 1");
+        eq(a2.accept(v1), "VisitorImpl1 ok 2");
+        eq(a1.accept(v2), "VisitorImpl2 ok 1");
+        eq(a2.accept(v2), "VisitorImpl2 ok 2");
+    }
 }
