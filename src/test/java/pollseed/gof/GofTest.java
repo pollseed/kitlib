@@ -123,17 +123,17 @@ public class GofTest extends AbstractMain {
         eq(bridge.executeBridge(), "execute Bridge");
     }
     
-    
     @Test
     public void state_pattern() {
-        JobState swrdsMan = new Command(new SwordsMan());
-        JobState magician = new Command(new Magician());
-        eq(swrdsMan.attack(), "斬り");
-        eq(magician.attack(), "ファイア");
-        eq(swrdsMan.deathblow(), "雷鳴斬");
-        eq(magician.deathblow(), "灼熱の炎");
+        final Logger userLogger = new LoggerImpl(new UserLogger());
+        final Logger serverLogger = new LoggerImpl(new ServerLogger());
+        eq(userLogger.info(), "user info >");
+        eq(userLogger.warn(), "user warn >");
+        eq(userLogger.error(), "user error >");
+        eq(serverLogger.info(), "server info >");
+        eq(serverLogger.warn(), "server warn >");
+        eq(serverLogger.error(), "server error >");
     }
-    
     
     @Test
     public void visitor_pattern() {
