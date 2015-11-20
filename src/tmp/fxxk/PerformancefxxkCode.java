@@ -1,17 +1,16 @@
-package tmp;
+package fxxk;
 
 import java.io.PrintStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import main.refactoring.PerformancefxxkCode.Runner.RunnerMain;
+import fxxk.PerformancefxxkCode.Runner.RunnerMain;
 
 public class PerformancefxxkCode {
     private static final int T = 10000;
     private static final PrintStream O = System.out;
-    private static final Matcher M = Pattern.compile(
-            "hogehoge\\.fugafuga\\.piyopiyo\\.unchi=(ok|ng){1}((\\?ch\\[\\]=)([0-9])){0,1}")
-            .matcher("hogehoge.fugafuga.piyopiyo.unchi=ok?ch[]=1");
+    private static final Matcher M = Pattern.compile("hogehoge\\.fugafuga\\.piyopiyo\\.unchi=(ok|ng){1}((\\?ch\\[\\]=)([0-9])){0,1}").matcher(
+            "hogehoge.fugafuga.piyopiyo.unchi=ok?ch[]=1");
     private static int __autoIncrement = 0;
 
     public static void main(final String[] args) {
@@ -93,8 +92,7 @@ public class PerformancefxxkCode {
             public void run() {
                 while (true) {
                     l("hogehoge.fugafuga.piyopiyo.unchi=ok?ch[]=1".replaceAll(
-                            "hogehoge\\.fugafuga\\.piyopiyo\\.unchi=(ok|ng){1}((\\?ch\\[\\]=)([0-9])){0,1}",
-                            "hoge2.fuga2.piyo2.test=$1?ch{}=$2"));
+                            "hogehoge\\.fugafuga\\.piyopiyo\\.unchi=(ok|ng){1}((\\?ch\\[\\]=)([0-9])){0,1}", "hoge2.fuga2.piyo2.test=$1?ch{}=$2"));
                     if (autoIncrementCheck())
                         break;
                 }
@@ -107,12 +105,8 @@ public class PerformancefxxkCode {
             @Override
             public void run() {
                 while (true) {
-                    l("hogehoge.fugafuga.piyopiyo.unchi=ok?ch[]=1"
-                            .replace("hogehoge", "hoge2")
-                            .replace("fugafuga", "fuga2")
-                            .replace("piyopiyo", "piyo2")
-                            .replace("unchi", "test")
-                            .replace("[]", "{}"));
+                    l("hogehoge.fugafuga.piyopiyo.unchi=ok?ch[]=1".replace("hogehoge", "hoge2").replace("fugafuga", "fuga2")
+                            .replace("piyopiyo", "piyo2").replace("unchi", "test").replace("[]", "{}"));
                     if (autoIncrementCheck())
                         break;
                 }
