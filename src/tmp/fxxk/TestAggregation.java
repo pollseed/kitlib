@@ -1,6 +1,6 @@
-package tmp.fxxk;
+package fxxk;
 
-import tmp.fxxk.abst.AbstractTestAggregation;
+import fxxk.abst.AbstractTestAggregation;
 
 public final class TestAggregation extends AbstractTestAggregation {
     private static void errorGenerator() {

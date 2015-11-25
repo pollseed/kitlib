@@ -1,8 +1,8 @@
-package tmp.fxxk.abst;
+package fxxk.abst;
 
 import java.io.PrintStream;
 
-import tmp.fxxk.abst.AbstractTestAggregation.ParseTest.ValidateProcess;
+import fxxk.abst.AbstractTestAggregation.ParseTest.ValidateProcess;
 
 public abstract class AbstractTestAggregation {
     protected AbstractTestAggregation() {
