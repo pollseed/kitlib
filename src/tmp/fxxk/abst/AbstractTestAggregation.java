@@ -30,6 +30,7 @@ public abstract class AbstractTestAggregation {
 
         void executeProcess() throws Exception;
 
+        @FunctionalInterface
         interface ValidateProcess {
             void execute();
         }
