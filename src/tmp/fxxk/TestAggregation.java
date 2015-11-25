@@ -17,21 +17,15 @@ public final class TestAggregation extends AbstractTestAggregation {
         __executer = new ParseTest() {
             @Override
             public void executeErrorProcess() throws Exception {
-                ln("executeErrorProcess", new ValidateProcess() {
-                    @Override
-                    public void execute() {
-                        Integer.parseInt(Long.toString(Long.MAX_VALUE));
-                    }
+                ln("executeErrorProcess", () -> {
+                    Integer.parseInt(Long.toString(Long.MAX_VALUE));
                 });
             }
 
             @Override
             public void executeProcess() throws Exception {
-                ln("executeProcess", new ValidateProcess() {
-                    @Override
-                    public void execute() {
-                        Long.parseLong(Long.toString(Long.MAX_VALUE));
-                    }
+                ln("executeProcess", () -> {
+                    Long.parseLong(Long.toString(Long.MAX_VALUE));
                 });
             }
         };
