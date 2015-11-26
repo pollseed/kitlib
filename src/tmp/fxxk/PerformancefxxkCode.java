@@ -4,8 +4,6 @@ import java.io.PrintStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fxxk.PerformancefxxkCode.Runner.RunnerMain;
-
 public class PerformancefxxkCode {
     private static final int T = 10000;
     private static final PrintStream O = System.out;
@@ -25,44 +23,35 @@ public class PerformancefxxkCode {
     }
 
     private static void b3() {
-        lngc(getTimes(new RunnerMain() {
-            @Override
-            public void run() {
-                StringBuffer unionWord = new StringBuffer();
-                while (true) {
-                    unionWord.append("hoge");
-                    if (autoIncrementCheck())
-                        break;
-                }
+        lngc(getTimes(() -> {
+            StringBuffer unionWord = new StringBuffer();
+            while (true) {
+                unionWord.append("hoge");
+                if (autoIncrementCheck())
+                    break;
             }
         }));
     }
 
     private static void b2() {
-        lngc(getTimes(new RunnerMain() {
-            @Override
-            public void run() {
-                StringBuilder unionWord = new StringBuilder();
-                while (true) {
-                    unionWord.append("hoge");
-                    if (autoIncrementCheck())
-                        break;
-                }
+        lngc(getTimes(() -> {
+            StringBuilder unionWord = new StringBuilder();
+            while (true) {
+                unionWord.append("hoge");
+                if (autoIncrementCheck())
+                    break;
             }
         }));
     }
 
     private static void b1() {
-        lngc(getTimes(new RunnerMain() {
-            @Override
-            public void run() {
-                @SuppressWarnings("unused")
-                String unionWord = "";
-                while (true) {
-                    unionWord += "hoge";
-                    if (autoIncrementCheck())
-                        break;
-                }
+        lngc(getTimes(() -> {
+            @SuppressWarnings("unused")
+            String unionWord = "";
+            while (true) {
+                unionWord += "hoge";
+                if (autoIncrementCheck())
+                    break;
             }
         }));
     }
@@ -74,42 +63,33 @@ public class PerformancefxxkCode {
     }
 
     private static void a3() {
-        lngc(getTimes(new RunnerMain() {
-            @Override
-            public void run() {
-                while (true) {
-                    l(M.replaceAll("hoge2.fuga2.piyo2.test=$1?ch{}=$2"));
-                    if (autoIncrementCheck())
-                        break;
-                }
+        lngc(getTimes(() -> {
+            while (true) {
+                l(M.replaceAll("hoge2.fuga2.piyo2.test=$1?ch{}=$2"));
+                if (autoIncrementCheck())
+                    break;
             }
         }));
     }
 
     private static void a2() {
-        lngc(getTimes(new RunnerMain() {
-            @Override
-            public void run() {
-                while (true) {
-                    l("hogehoge.fugafuga.piyopiyo.unchi=ok?ch[]=1".replaceAll(
-                            "hogehoge\\.fugafuga\\.piyopiyo\\.unchi=(ok|ng){1}((\\?ch\\[\\]=)([0-9])){0,1}", "hoge2.fuga2.piyo2.test=$1?ch{}=$2"));
-                    if (autoIncrementCheck())
-                        break;
-                }
+        lngc(getTimes(() -> {
+            while (true) {
+                l("hogehoge.fugafuga.piyopiyo.unchi=ok?ch[]=1".replaceAll(
+                        "hogehoge\\.fugafuga\\.piyopiyo\\.unchi=(ok|ng){1}((\\?ch\\[\\]=)([0-9])){0,1}", "hoge2.fuga2.piyo2.test=$1?ch{}=$2"));
+                if (autoIncrementCheck())
+                    break;
             }
         }));
     }
 
     private static void a1() {
-        lngc(getTimes(new RunnerMain() {
-            @Override
-            public void run() {
-                while (true) {
-                    l("hogehoge.fugafuga.piyopiyo.unchi=ok?ch[]=1".replace("hogehoge", "hoge2").replace("fugafuga", "fuga2")
-                            .replace("piyopiyo", "piyo2").replace("unchi", "test").replace("[]", "{}"));
-                    if (autoIncrementCheck())
-                        break;
-                }
+        lngc(getTimes(() -> {
+            while (true) {
+                l("hogehoge.fugafuga.piyopiyo.unchi=ok?ch[]=1".replace("hogehoge", "hoge2").replace("fugafuga", "fuga2").replace("piyopiyo", "piyo2")
+                        .replace("unchi", "test").replace("[]", "{}"));
+                if (autoIncrementCheck())
+                    break;
             }
         }));
     }
@@ -144,11 +124,13 @@ public class PerformancefxxkCode {
         return System.currentTimeMillis() - before;
     }
 
+    @FunctionalInterface
     public interface Runner {
         long getTimes(RunnerMain main);
+    }
 
-        interface RunnerMain {
-            void run();
-        }
+    @FunctionalInterface
+    public interface RunnerMain {
+        void run();
     }
 }

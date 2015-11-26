@@ -3,6 +3,7 @@ package pollseed.tools.helper.interfaces;
 /**
  * 処理をするためのインタフェース.
  */
+@FunctionalInterface
 public interface Runner {
 
     /**
@@ -17,6 +18,7 @@ public interface Runner {
     /**
      * メイン処理のインタフェース
      */
+    @FunctionalInterface
     interface RunnerMain {
 
         /**
