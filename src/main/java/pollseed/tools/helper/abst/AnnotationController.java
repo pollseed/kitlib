@@ -53,12 +53,9 @@ public abstract class AnnotationController implements AnnotationAction {
      *            継承元のクラス
      */
     private <T> void beforeAnnotationExecute(final Class<T> clazz) {
-        beforeAnnotationExecuter(clazz, new AnnotationExecuterHelperWrapper() {
-            @Override
-            public void processTimerExecute() {
-                LOGGER.info("before");
-                __result = System.currentTimeMillis();
-            }
+        beforeAnnotationExecuter(clazz, () -> {
+            LOGGER.info("before");
+            __result = System.currentTimeMillis();
         });
     }
 
@@ -70,12 +67,9 @@ public abstract class AnnotationController implements AnnotationAction {
      *            継承元のクラス
      */
     private <T> void afterAnnotationExecute(final Class<T> clazz) {
-        afterAnnotationExecuter(clazz, new AnnotationExecuterHelperWrapper() {
-            @Override
-            public void processTimerExecute() {
-                LOGGER.info(Long.toString(System.currentTimeMillis() - __result));
-                LOGGER.info("after");
-            }
+        afterAnnotationExecuter(clazz, () -> {
+            LOGGER.info(Long.toString(System.currentTimeMillis() - __result));
+            LOGGER.info("after");
         });
     }
 
@@ -91,7 +85,8 @@ public abstract class AnnotationController implements AnnotationAction {
      *             例外発生時
      */
     private <T> void errorAnnotationExecute(final Class<T> clazz, final Exception e) throws Exception {
-        errorAnnotationExecuter(clazz, new AnnotationExecuterHelperWrapper() {}, e);
+        errorAnnotationExecuter(clazz, () -> {
+        }, e);
     }
 
     /**
@@ -102,7 +97,7 @@ public abstract class AnnotationController implements AnnotationAction {
      * @param executerHelper
      *            {@link AnnotationExecuterHelperWrapper} 固有の処理を実装して下さい
      */
-    private <T> void beforeAnnotationExecuter(final Class<T> clazz, final AnnotationExecuterHelperWrapper executerHelper) {
+    private <T> void beforeAnnotationExecuter(final Class<T> clazz, final AnnotationExecuterHelper executerHelper) {
         Arrays.stream(clazz.getDeclaredMethods()).forEach(method -> {
             Arrays.stream(method.getDeclaredAnnotations()).forEach(annotation -> {
                 if (annotation instanceof ProcessTimer) {
@@ -123,7 +118,7 @@ public abstract class AnnotationController implements AnnotationAction {
      * @param executerHelper
      *            {@link AnnotationExecuterHelperWrapper} 固有の処理を実装して下さい
      */
-    private <T> void afterAnnotationExecuter(final Class<T> clazz, final AnnotationExecuterHelperWrapper executerHelper) {
+    private <T> void afterAnnotationExecuter(final Class<T> clazz, final AnnotationExecuterHelper executerHelper) {
         Arrays.stream(clazz.getDeclaredMethods()).forEach(method -> {
             Arrays.stream(method.getDeclaredAnnotations()).forEach(annotation -> {
                 if (annotation instanceof ProcessTimer) {
@@ -146,7 +141,7 @@ public abstract class AnnotationController implements AnnotationAction {
      * @throws Exception
      *             例外発生時
      */
-    private <T> void errorAnnotationExecuter(final Class<T> clazz, final AnnotationExecuterHelperWrapper executerHelper, final Exception e)
+    private <T> void errorAnnotationExecuter(final Class<T> clazz, final AnnotationExecuterHelper executerHelper, final Exception e)
             throws Exception {
         for (final Method method : clazz.getDeclaredMethods()) {
             for (final Annotation annotation : method.getDeclaredAnnotations()) {
