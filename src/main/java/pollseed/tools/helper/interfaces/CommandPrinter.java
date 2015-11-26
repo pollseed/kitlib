@@ -1,22 +1,29 @@
 package pollseed.tools.helper.interfaces;
 
+import java.io.PrintStream;
 import java.util.List;
 
 /**
  * コマンドプリンター
  */
 public interface CommandPrinter {
+    /** 出力用の線. */
+    static final String LINE = "-------------";
+    /** 出力. */
+    static final PrintStream O = System.out;
 
     /**
      * 引数を埋め込んで返す.
      *
      * @param origin
-     *            元データ
+     *            書式文字元データ
      * @param embedded
      *            埋め込み引数
      * @return 埋め込みデータ
      */
-    String printf(String origin, String embedded);
+    default String printf(final String origin, final String embedded) {
+        return String.format(origin, embedded);
+    }
 
     /**
      * {@code obj}をコマンドラインに出力して改行する.
@@ -24,7 +31,9 @@ public interface CommandPrinter {
      * @param obj
      *            出力したいデータ
      */
-    void ln(Object obj);
+    default void ln(final Object obj) {
+        O.println(obj);
+    }
 
     /**
      * {@code obj}をコマンドラインに出力する.
@@ -32,12 +41,16 @@ public interface CommandPrinter {
      * @param obj
      *            出力したいデータ
      */
-    void l(Object obj);
+    default void l(final Object obj) {
+        O.print(obj);
+    }
 
     /**
      * ラインをコマンドラインに出力する.
      */
-    void lnLine();
+    default void lnLine() {
+        ln(LINE);
+    }
 
     /**
      * {@code obj}をコマンドラインに出力し、ラインで囲む.
@@ -45,7 +58,11 @@ public interface CommandPrinter {
      * @param obj
      *            出力したいデータ
      */
-    void lnLine(Object obj);
+    default void lnLine(final Object obj) {
+        lnLine();
+        ln(obj);
+        lnLine();
+    }
 
     /**
      * {@code list}をそれぞれコマンドラインに出力して改行する.
@@ -53,6 +70,7 @@ public interface CommandPrinter {
      * @param list
      *            出力したいデータ
      */
-    void lnList(List<? extends Object> list);
-
+    default void lnList(final List<? extends Object> list) {
+        list.forEach(obj -> ln(obj));
+    }
 }
