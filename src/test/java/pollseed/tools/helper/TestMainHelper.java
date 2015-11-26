@@ -5,9 +5,8 @@ import junit.framework.Assert;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
-import fxxk.PerformancefxxkCode.Runner;
-import fxxk.PerformancefxxkCode.RunnerMain;
 import pollseed.tools.helper.interfaces.CommandPrinter;
+import pollseed.tools.helper.interfaces.Runner;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -36,13 +35,15 @@ public final class TestMainHelper implements Runner, CommandPrinter {
 
     @Test
     public void 標準出力のテスト_改行あり() {
-//        byteArrayOutputStream = new ByteArrayOutputStream();
-//        System.setOut(new PrintStream(new BufferedOutputStream(byteArrayOutputStream)));
-//
-//        ln(TEST_MESSAGE);
-//        System.out.flush();
-//        Assert.assertEquals(byteArrayOutputStream.toString(), TEST_MESSAGE + System.lineSeparator());
-//        System.out.close();
+        // byteArrayOutputStream = new ByteArrayOutputStream();
+        // System.setOut(new PrintStream(new
+        // BufferedOutputStream(byteArrayOutputStream)));
+        //
+        // ln(TEST_MESSAGE);
+        // System.out.flush();
+        // Assert.assertEquals(byteArrayOutputStream.toString(), TEST_MESSAGE +
+        // System.lineSeparator());
+        // System.out.close();
     }
 
     @Test
@@ -52,7 +53,8 @@ public final class TestMainHelper implements Runner, CommandPrinter {
         // BufferedOutputStream(byteArrayOutputStream)));
         // lnLine();
         // System.out.flush();
-        // Assert.assertEquals(byteArrayOutputStream.toString(), LINE_STR + System.lineSeparator());
+        // Assert.assertEquals(byteArrayOutputStream.toString(), LINE_STR +
+        // System.lineSeparator());
     }
 
     @Test
@@ -70,18 +72,20 @@ public final class TestMainHelper implements Runner, CommandPrinter {
 
     @Test
     public void 標準出力のテスト_リスト() {
-//        byteArrayOutputStream = new ByteArrayOutputStream();
-//        System.setOut(new PrintStream(new BufferedOutputStream(byteArrayOutputStream)));
-//        @SuppressWarnings("serial")
-//        List<Object> list = new ArrayList<Object>() {
-//            {
-//                add(TEST1_MESSAGE);
-//                add(TEST2_MESSAGE);
-//            }
-//        };
-//        lnList(list);
-//        System.out.flush();
-//        Assert.assertEquals(byteArrayOutputStream.toString(), TEST1_MESSAGE + System.lineSeparator() + TEST2_MESSAGE + System.lineSeparator());
+        // byteArrayOutputStream = new ByteArrayOutputStream();
+        // System.setOut(new PrintStream(new
+        // BufferedOutputStream(byteArrayOutputStream)));
+        // @SuppressWarnings("serial")
+        // List<Object> list = new ArrayList<Object>() {
+        // {
+        // add(TEST1_MESSAGE);
+        // add(TEST2_MESSAGE);
+        // }
+        // };
+        // lnList(list);
+        // System.out.flush();
+        // Assert.assertEquals(byteArrayOutputStream.toString(), TEST1_MESSAGE +
+        // System.lineSeparator() + TEST2_MESSAGE + System.lineSeparator());
     }
 
     @Test

@@ -77,7 +77,7 @@ public class ListUtilsTest {
         List<String> list = Arrays.asList("hogehoge", _fuga, "piyopiyo", _fuga);
 
         List<List<String>> null_element = ListUtils.removeAll(null, list);
-        List<List<String>> null_list = ListUtils.removeAll(_fuga, null);
+        List<List<String>> null_list = ListUtils.removeAll(_fuga);
         Assert.assertNull(null_element);
         Assert.assertNull(null_list);
 
