@@ -97,11 +97,14 @@ public abstract class AnnotationController implements AnnotationAction {
      * @param executerHelper
      *            {@link AnnotationExecuterHelperWrapper} 固有の処理を実装して下さい
      */
-    private <T> void beforeAnnotationExecuter(final Class<T> clazz, final AnnotationExecuterHelper executerHelper) {
+    private <T> void beforeAnnotationExecuter(
+            final Class<T> clazz,
+            final AnnotationExecuterHelper executerHelper) {
         Arrays.stream(clazz.getDeclaredMethods()).forEach(method -> {
             Arrays.stream(method.getDeclaredAnnotations()).forEach(annotation -> {
                 if (annotation instanceof ProcessTimer) {
-                    Arrays.stream(((ProcessTimer) annotation).value()).filter(type -> type == Type.MEASURE).forEach(x -> {
+                    Arrays.stream(((ProcessTimer) annotation).value()).filter(
+                            type -> type == Type.MEASURE).forEach(v -> {
                         executerHelper.processTimerExecute();
                         return;
                     });
@@ -118,11 +121,14 @@ public abstract class AnnotationController implements AnnotationAction {
      * @param executerHelper
      *            {@link AnnotationExecuterHelperWrapper} 固有の処理を実装して下さい
      */
-    private <T> void afterAnnotationExecuter(final Class<T> clazz, final AnnotationExecuterHelper executerHelper) {
+    private <T> void afterAnnotationExecuter(
+            final Class<T> clazz,
+            final AnnotationExecuterHelper executerHelper) {
         Arrays.stream(clazz.getDeclaredMethods()).forEach(method -> {
             Arrays.stream(method.getDeclaredAnnotations()).forEach(annotation -> {
                 if (annotation instanceof ProcessTimer) {
-                    Arrays.stream(((ProcessTimer) annotation).value()).filter(type -> type == Type.MEASURE).forEach(x -> {
+                    Arrays.stream(((ProcessTimer) annotation).value()).filter(
+                            type -> type == Type.MEASURE).forEach(v -> {
                         executerHelper.processTimerExecute();
                         return;
                     });
@@ -141,18 +147,23 @@ public abstract class AnnotationController implements AnnotationAction {
      * @throws Exception
      *             例外発生時
      */
-    private <T> void errorAnnotationExecuter(final Class<T> clazz, final AnnotationExecuterHelper executerHelper, final Exception e)
-            throws Exception {
-        for (final Method method : clazz.getDeclaredMethods()) {
-            for (final Annotation annotation : method.getDeclaredAnnotations()) {
+    private <T> void errorAnnotationExecuter(
+            final Class<T> clazz,
+            final AnnotationExecuterHelper executerHelper, final Exception e) throws Exception {
+        Arrays.stream(clazz.getDeclaredMethods()).forEach(method -> {
+            Arrays.stream(method.getDeclaredAnnotations()).forEach(annotation -> {
                 if (e instanceof SilentException) {
                     LOGGER.info(e.getMessage());
                     return;
                 } else if (e instanceof SavageException) {
-                    throw e;
+                    try {
+                        throw e;
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
                 }
                 // TODO
-            }
-        }
+                });
+        });
     }
 }
