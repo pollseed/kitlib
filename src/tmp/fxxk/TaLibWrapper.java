@@ -31,7 +31,7 @@ public class TaLibWrapper implements CommandPrinter {
         private static final double[] OUT_REAL = new double[400];
     }
 
-    public static class AdvancedVal {
+    private static class AdvancedVal {
         private static final int OPT_IN_FAST_PERIOD = 100;
         private static final int OPT_IN_SLOW_PERIOD = 100;
         private static final int OPT_IN_SIGNAL_PERIOD = 100;
@@ -89,7 +89,7 @@ public class TaLibWrapper implements CommandPrinter {
         });
     }
 
-    public static void execute(TaLib t) {
+    private static void execute(TaLib t) {
         if (RetCode.Success == t.run()) {
             P.ln(__outBegIdx.value);
             P.ln(__outNBElement.value);
@@ -97,7 +97,7 @@ public class TaLibWrapper implements CommandPrinter {
     }
 
     @FunctionalInterface
-    interface TaLib {
+    private interface TaLib {
         RetCode run();
     }
 }
