@@ -20,80 +20,72 @@ public class TaLibWrapper implements CommandPrinter {
     private static final CommandPrinter P = new CommandPrinter() {
     };
 
-    /**
-     * output value.
-     * 29
-     * 371
-     * 30
-     * 370
-     * 198
-     * 202
-     */
+    private static MInteger __outBegIdx = new MInteger();
+    private static MInteger __outNBElement = new MInteger();
+
+    private static class StandardVal {
+        private static final int START_IDX = 0;
+        private static final int END_IDX = 399;
+        private static final double[] IN_REAL = new double[400];
+        private static final int OPT_IN_TIME_PERIOD = 30;
+        private static final double[] OUT_REAL = new double[400];
+    }
+
+    public static class AdvancedVal {
+        private static final int OPT_IN_FAST_PERIOD = 100;
+        private static final int OPT_IN_SLOW_PERIOD = 100;
+        private static final int OPT_IN_SIGNAL_PERIOD = 100;
+        private static final double[] OUT_MACD = new double[400];
+        private static final double[] OUT_MACD_SIGNAL = new double[400];
+        private static final double[] OUT_MACD_HIST = new double[400];
+    }
+
     public static void main(String[] args) {
         execute(() -> {
-            int startIdx = 0;
-            int endIdx = 399;
-            double[] inReal = new double[400];
-            int optInTimePeriod = 30;
-            MInteger outBegIdx = new MInteger();
-            MInteger outNBElement = new MInteger();
-            double[] outReal = new double[400];
-            RetCode sma = C.sma(
-                    startIdx,
-                    endIdx,
-                    inReal,
-                    optInTimePeriod,
-                    outBegIdx,
-                    outNBElement,
-                    outReal);
-            if (RetCode.Success == sma) {
-                P.ln(outBegIdx.value);
-                P.ln(outNBElement.value);
-            }
-
-            RetCode rsi = C.rsi(
-                    startIdx,
-                    endIdx,
-                    inReal,
-                    optInTimePeriod,
-                    outBegIdx,
-                    outNBElement,
-                    outReal);
-            if (RetCode.Success == rsi) {
-                P.ln(outBegIdx.value);
-                P.ln(outNBElement.value);
-            }
-            int optInFastPeriod = 100;
-            int optInSlowPeriod = 100;
-            int optInSignalPeriod = 100;
-            double[] outMACD = new double[400];
-            double[] outMACDSignal = new double[400];
-            double[] outMACDHist = new double[400];
-            RetCode macd = C.macd(
-                    startIdx,
-                    endIdx,
-                    inReal,
-                    optInFastPeriod,
-                    optInSlowPeriod,
-                    optInSignalPeriod,
-                    outBegIdx,
-                    outNBElement,
-                    outMACD,
-                    outMACDSignal,
-                    outMACDHist);
-            if (RetCode.Success == macd) {
-                P.ln(outBegIdx.value);
-                P.ln(outNBElement.value);
-            }
+            return C.sma(
+                    StandardVal.START_IDX,
+                    StandardVal.END_IDX,
+                    StandardVal.IN_REAL,
+                    StandardVal.OPT_IN_TIME_PERIOD,
+                    __outBegIdx,
+                    __outNBElement,
+                    StandardVal.OUT_REAL);
+        });
+        execute(() -> {
+            return C.rsi(
+                    StandardVal.START_IDX,
+                    StandardVal.END_IDX,
+                    StandardVal.IN_REAL,
+                    StandardVal.OPT_IN_TIME_PERIOD,
+                    __outBegIdx,
+                    __outNBElement,
+                    StandardVal.OUT_REAL);
+        });
+        execute(() -> {
+            return C.macd(
+                    StandardVal.START_IDX,
+                    StandardVal.END_IDX,
+                    StandardVal.IN_REAL,
+                    AdvancedVal.OPT_IN_FAST_PERIOD,
+                    AdvancedVal.OPT_IN_SLOW_PERIOD,
+                    AdvancedVal.OPT_IN_SIGNAL_PERIOD,
+                    __outBegIdx,
+                    __outNBElement,
+                    AdvancedVal.OUT_MACD,
+                    AdvancedVal.OUT_MACD_SIGNAL,
+                    AdvancedVal.OUT_MACD_HIST);
         });
     }
 
     public static void execute(TaLib t) {
-        t.run();
+        if (RetCode.Success == t.run()) {
+            P.ln(__outBegIdx.value);
+            P.ln(__outNBElement.value);
+        }
     }
 
     @FunctionalInterface
     interface TaLib {
-        void run();
+        RetCode run();
     }
 }
