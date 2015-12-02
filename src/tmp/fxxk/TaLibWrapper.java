@@ -100,4 +100,8 @@ public class TaLibWrapper implements CommandPrinter {
     private interface TaLib {
         RetCode run();
     }
+
+    private TaLibWrapper() throws AssertionError {
+        new AssertionError("cannot create instance.");
+    }
 }
