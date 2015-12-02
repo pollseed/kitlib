@@ -20,6 +20,15 @@ public class TaLibWrapper implements CommandPrinter {
     private static final CommandPrinter P = new CommandPrinter() {
     };
 
+    /**
+     * output value.
+     * 29
+     * 371
+     * 30
+     * 370
+     * 198
+     * 202
+     */
     public static void main(String[] args) {
         execute(() -> {
             int startIdx = 0;
