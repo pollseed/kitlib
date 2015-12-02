@@ -45,7 +45,7 @@ dependencies {
     compile 'org.jsoup:jsoup:1.8.1'
     compile 'commons-codec:commons-codec:1.10'
     compile 'commons-beanutils:commons-beanutils:1.9.2'
-    
+    compile 'com.tictactec:ta-lib:0.4.0'
 }
 
 buildscript {
