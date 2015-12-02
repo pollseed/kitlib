@@ -35,6 +35,7 @@ public class TaLibWrapper implements CommandPrinter {
         private static final int OPT_IN_FAST_PERIOD = 100;
         private static final int OPT_IN_SLOW_PERIOD = 100;
         private static final int OPT_IN_SIGNAL_PERIOD = 100;
+        private static final int OPT_IN_TIME_PERIOD = 100;
         private static final double[] OUT_MACD = new double[400];
         private static final double[] OUT_MACD_SIGNAL = new double[400];
         private static final double[] OUT_MACD_HIST = new double[400];
@@ -74,6 +75,16 @@ public class TaLibWrapper implements CommandPrinter {
                     AdvancedVal.OUT_MACD,
                     AdvancedVal.OUT_MACD_SIGNAL,
                     AdvancedVal.OUT_MACD_HIST);
+        });
+        execute(() -> {
+            return C.movingAverage(StandardVal.START_IDX,
+                    StandardVal.END_IDX,
+                    StandardVal.IN_REAL,
+                    AdvancedVal.OPT_IN_TIME_PERIOD,
+                    MAType.Kama,
+                    __outBegIdx,
+                    __outNBElement,
+                    StandardVal.OUT_REAL);
         });
     }
 
