@@ -77,7 +77,8 @@ public class TaLibWrapper implements CommandPrinter {
                     AdvancedVal.OUT_MACD_HIST);
         });
         execute(() -> {
-            return C.movingAverage(StandardVal.START_IDX,
+            return C.movingAverage(
+                    StandardVal.START_IDX,
                     StandardVal.END_IDX,
                     StandardVal.IN_REAL,
                     AdvancedVal.OPT_IN_TIME_PERIOD,
