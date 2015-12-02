@@ -7,9 +7,11 @@ import com.tictactec.ta.lib.MInteger;
 import com.tictactec.ta.lib.RetCode;
 
 /**
- * C++だけど、このドキュメントを参考にした
- * 
+ * 1.C++だけど、このドキュメントを参考にした
  * http://ta-lib.org/d_api/d_api.html
+ * 
+ * 2.build.gradleに以下追記
+ * compile 'com.tictactec:ta-lib:0.4.0'
  * 
  **/
 public class TaLibWrapper implements CommandPrinter {
