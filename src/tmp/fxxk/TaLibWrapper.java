@@ -6,6 +6,12 @@ import com.tictactec.ta.lib.Core;
 import com.tictactec.ta.lib.MInteger;
 import com.tictactec.ta.lib.RetCode;
 
+/**
+ * C++だけど、このドキュメントを参考にした
+ * 
+ * http://ta-lib.org/d_api/d_api.html
+ * 
+ **/
 public class TaLibWrapper implements CommandPrinter {
 
     private static final Core C = new Core();
