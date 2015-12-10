@@ -46,6 +46,7 @@ dependencies {
     compile 'commons-codec:commons-codec:1.10'
     compile 'commons-beanutils:commons-beanutils:1.9.2'
     compile 'com.tictactec:ta-lib:0.4.0'
+    compile 'com.atilika.kuromoji:kuromoji-jumandic:0.9.0'
 }
 
 buildscript {
